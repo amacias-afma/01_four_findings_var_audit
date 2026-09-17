@@ -11,7 +11,7 @@ python -m value_at_risk.data.snapshot --verify       # frozen inputs, sha256
 python -m value_at_risk.evaluation.ledger --summary  # the disclosure integers
 python scripts/refresh_paper_figures.py --check      # figures file vs result files
 python scripts/make_figures.py                       # Figures 1 and 2, from the CSVs
-python scripts/measure_contraction.py                # accuracy of the derivation in \Cref{sec:synthetic}
+python scripts/measure_contraction.py                # accuracy of the derivation in §3.5
 \end{verbatim}
 
 The synthetic demonstration of \Cref{sec:synthetic} is pure numpy and runs in 22 seconds; it requires no market
@@ -22,4 +22,4 @@ else in the repository.
 persisted (\Cref{sec:synthetic}), so seed-level intervals cannot be recomputed from the archived outputs --- only
 comparison-level ones. The pipeline now persists them; the archived results predate the fix.
 
-\emph{Code and frozen data: \texttt{{[}repository\ DOI\ ---\ to\ be\ minted\ at\ submission{]}}.}
+\emph{Code and frozen data: \texttt{https://doi.org/10.5281/zenodo.22020014}.}

@@ -5,6 +5,7 @@ From the append-only ledger, not a hand count:
 quantity & value\tabularnewline
 \midrule
 \endhead
+specifications evaluated & \textbf{3,555} (lower bound)\tabularnewline
 test-set evaluations & \textbf{1,959}\tabularnewline
 asset--level cells & 16\tabularnewline
 maximum scoring passes on one cell & \textbf{4}\tabularnewline
@@ -18,3 +19,13 @@ this project has several validation blocks and \textbf{no test set}.
 
 The ledger figure exceeds the 1,899 first reconstructed from run manifests: \textbf{60 evaluations
 appear in no manifest at all}, and were found only because the ledger was built (\Cref{app:ledger}).
+
+\textbf{The two integers do not have equal standing, and the second is a floor.} Test-set
+evaluations are read from the append-only ledger. Specifications evaluated are summed from the
+four batch run manifests --- the record the ledger exists to distrust. The two debugging runs
+that contribute the 60 uncounted evaluations have no batch manifest, so whatever they tried is
+not in the 3,555. We report the number anyway, marked as a lower bound: the protocol requires
+the integer, and a count with a stated floor is worth more than an omission. That the
+specification count cannot be derived as cleanly as the evaluation count is itself the
+argument for building the ledger --- and an argument for building its equivalent on the
+specification side, which we did not do.

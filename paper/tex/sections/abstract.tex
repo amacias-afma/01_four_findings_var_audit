@@ -1,23 +1,19 @@
-A statistically convincing result can be produced by the fitting procedure rather than by the
-data, and no amount of additional statistical testing will detect this. We document four
-instances in a single pre-registered study, using as a vehicle the question of whether anchoring
-a quantile-loss model to a classical Value-at-Risk prior improves one-day-ahead forecasts. It
-does not; that answer is not the contribution. Over eight assets and two quantile levels the
-study produced four findings, each apparently well supported, and \textbf{all four were subsequently
-withdrawn}. One fell to a multiplicity correction, one to a power analysis, one to a check of
-the model's own seed noise --- three familiar failures. The fourth was the strongest result in the
-project, replicated across four runs with a dose--response relationship and a sign test at
-\(p = 5.2 \times 10^{-4}\), and \textbf{it survived every statistical control available}. It dissolved when asked
-whether the mechanism guaranteed it, at a cost of 28 minutes of validation compute and no test
-data at all.
+A statistically convincing result can be produced by the fitting procedure rather than the
+data, and no further statistical testing will detect it. We document four instances in one
+pre-registered study of whether anchoring a quantile-loss model to a Value-at-Risk
+prior improves one-day-ahead forecasts. It does not; that answer is not the contribution.
+\textbf{All four findings were withdrawn} --- one to a multiplicity correction, one to a power
+analysis, one to the model's own seed noise. The fourth, replicated across four runs with a
+dose--response and a sign test at \(p = 5.2 \times 10^{-4}\), dissolved when asked whether the
+mechanism guaranteed it: 28 minutes of compute, no test data.
 
-We disclose \textbf{1,959 test-set evaluations across 16 asset--level cells and four scoring passes},
-with \textbf{zero cells scored only once}, and we reproduce the decisive artefact synthetically with
-ground truth known: across a ten-point weight grid an anchor carrying \textbf{no information}
-stabilises the estimator \textbf{at least as much as the true optimum at 9 of 10 weights}
-(sign test \(p = 0.021\)) while forecasting materially worse. \textbf{The two controls that destroyed the
-two surviving findings --- a power calculation and a scale-matched permutation --- were also the two
-cheapest, and a five-paper survey coded against a pre-fixed schema finds neither in use.} None
-of these failures required anyone to behave badly, which is the paper's argument.
+\textbf{Neither the mechanism (ridge shrinkage) nor the control (a scale-matched permutation) is
+new}; the artefact is reportable and survives pre-registration. \textbf{The market
+study is the exhibit, not the evidence:} we disclose \textbf{3,555 specifications evaluated} and
+\textbf{1,959 test-set evaluations}, zero cells scored once; every market result is
+validation-grade. The evidence is an analytic derivation and a synthetic reproduction with
+ground truth known: an uninformative anchor stabilises the estimator as much as the true
+optimum (\textbf{median ratio 1.04, 95\% CI 1.0--1.8}) while forecasting worse. \textbf{Stability tracks the
+penalty; usefulness tracks the target.}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}

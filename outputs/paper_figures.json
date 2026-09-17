@@ -46,5 +46,9 @@
   "demo_paired_p": 0.021484375,
   "demo_paired_median": 1.043675954626579,
   "demo_paired_ci_low": 1.017067928151725,
-  "demo_paired_ci_high": 1.8290709039463127
+  "demo_paired_ci_high": 1.8290709039463127,
+  "specs": 3555,
+  "specs_manifest_evals": 1899,
+  "evals_no_manifest": 60,
+  "specs_is_lower_bound": 1
 }

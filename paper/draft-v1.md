@@ -9,27 +9,23 @@ and `outputs/contraction_check/`. None is typed by hand, and
 
 ## Abstract
 
-A statistically convincing result can be produced by the fitting procedure rather than by the
-data, and no amount of additional statistical testing will detect this. We document four
-instances in a single pre-registered study, using as a vehicle the question of whether anchoring
-a quantile-loss model to a classical Value-at-Risk prior improves one-day-ahead forecasts. It
-does not; that answer is not the contribution. Over eight assets and two quantile levels the
-study produced four findings, each apparently well supported, and **all four were subsequently
-withdrawn**. One fell to a multiplicity correction, one to a power analysis, one to a check of
-the model's own seed noise — three familiar failures. The fourth was the strongest result in the
-project, replicated across four runs with a dose–response relationship and a sign test at
-$p = 5.2 \times 10^{-4}$, and **it survived every statistical control available**. It dissolved when asked
-whether the mechanism guaranteed it, at a cost of 28 minutes of validation compute and no test
-data at all.
+A statistically convincing result can be produced by the fitting procedure rather than the
+data, and no further statistical testing will detect it. We document four instances in one
+pre-registered study of whether anchoring a quantile-loss model to a Value-at-Risk
+prior improves one-day-ahead forecasts. It does not; that answer is not the contribution.
+**All four findings were withdrawn** — one to a multiplicity correction, one to a power
+analysis, one to the model's own seed noise. The fourth, replicated across four runs with a
+dose–response and a sign test at $p = 5.2 \times 10^{-4}$, dissolved when asked whether the
+mechanism guaranteed it: 28 minutes of compute, no test data.
 
-We disclose **1,959 test-set evaluations across 16 asset–level cells and four scoring passes**,
-with **zero cells scored only once**, and we reproduce the decisive artefact synthetically with
-ground truth known: across a ten-point weight grid an anchor carrying **no information**
-stabilises the estimator **at least as much as the true optimum at 9 of 10 weights**
-(sign test $p = 0.021$) while forecasting materially worse. **The two controls that destroyed the
-two surviving findings — a power calculation and a scale-matched permutation — were also the two
-cheapest, and a five-paper survey coded against a pre-fixed schema finds neither in use.** None
-of these failures required anyone to behave badly, which is the paper's argument.
+**Neither the mechanism (ridge shrinkage) nor the control (a scale-matched permutation) is
+new**; the artefact is reportable and survives pre-registration. **The market
+study is the exhibit, not the evidence:** we disclose **3,555 specifications evaluated** and
+**1,959 test-set evaluations**, zero cells scored once; every market result is
+validation-grade. The evidence is an analytic derivation and a synthetic reproduction with
+ground truth known: an uninformative anchor stabilises the estimator as much as the true
+optimum (**median ratio 1.04, 95% CI 1.0–1.8**) while forecasting worse. **Stability tracks the
+penalty; usefulness tracks the target.**
 
 ---
 
@@ -104,25 +100,52 @@ is pre-registered.** The controls this field has institutionalised are not the c
 defeated this study. A convenience sample of five cannot establish a base rate and we do not
 claim it does; by the standard §3.2 applies to our own nulls, it is an illustration.
 
-**Contributions.**
+**Why a VaR study, and why that is not incidental.** The mechanism documented here — an L2
+penalty contracting inter-seed dispersion toward whatever target it is given — is Stein/ridge
+shrinkage, and it is not new. Neither is the control. A reader is therefore entitled to ask why
+a known mechanism and a known control are worth a paper. The answer is the domain. Quantile
+forecasting for VaR is unusually well instrumented: established parametric and historical
+baselines, a strictly consistent scoring function, and a set of backtests that practitioners and
+regulators actually run. If a mechanically guaranteed result can be produced *here* — and
+survive pre-registration, a multiplicity correction, a ten-seed protocol, Diebold–Mariano tests,
+a Model Confidence Set screen, a coverage gate, replication across four runs and a dose–response
+relationship — then the failure is not a field being careless with a weak checklist.
+**The instrumentation is what is being tested, and a well-instrumented domain is the strongest
+available place to test it.** A synthetic demonstration alone would establish that the mechanism
+exists; it would not establish that the mechanism survives a real protocol built to catch
+exactly this. That second claim is the contribution, and it is why §3.1 to §3.4 are in the paper
+at all.
 
-1. A pre-registered VaR study reporting a complete null, with dated amendments including
-   several that weakened the authors' own position. Pre-registration remains rare in this
-   domain: as of July 2023 **≤ 1% of economics journals** had adopted the registered-report
-   format (Lin et al. 2024).
-2. **Four failure modes observed in a single pre-registered study**, with the control that
-   detects each and its cost. We claim instances, not coverage: one study cannot establish a
-   taxonomy and we do not present one.
-3. A demonstration — analytical and synthetic, with ground truth known — that
-   **shrinkage-induced stability is not evidence of a good prior**, together with a
-   scale-matched permutation control that separates the two for minutes of compute.
-   **Neither the mechanism nor the control is new**: the mechanism is Stein/ridge shrinkage,
-   and the control is a restricted randomization test with precedents in statistics, machine
-   learning and econometrics (§3.5). What we document is that the artefact is *reportable as an
-   empirical finding*, survives a pre-registered protocol with a dose–response and
-   $p = 5.2 \times 10^{-4}$ — and that we located no prior application of the control to a stability claim.
-4. *(Software artefact, Appendix A.)* An append-only **test-touch ledger** that makes
-   evaluation reuse countable rather than reconstructible after the fact.
+**What the market study is, and is not.** §4 discloses 1,959 test-set evaluations across 16
+asset–level cells with **zero cells scored only once**. By this project's own protocol that means
+the study has several validation blocks and no test set, and every market number in §3 is
+validation-grade. We therefore do not offer §3.1–§3.4 as evidence about VaR modelling, nor as
+evidence that the mechanism operates. **They are the exhibit** — the artefact that a careful
+pre-registered protocol produced, and would have reported. The evidence that the mechanism
+guarantees the result is §3.5, where ground truth is known and the demonstration needs no market
+data at all. Keeping the two apart is the single distinction this paper asks a reader to hold.
+
+**Contributions.** Two.
+
+1. **A mechanically guaranteed result, shown to be reportable.** A demonstration — analytical
+   and synthetic, with ground truth known — that **shrinkage-induced stability is not evidence
+   of a good prior**, together with a scale-matched permutation control that separates the two
+   for minutes of compute. **Neither the mechanism nor the control is new**: the mechanism is
+   Stein/ridge shrinkage, and the control is a restricted randomization test with precedents in
+   statistics, machine learning and econometrics (§3.5). What is documented is that the artefact
+   is *reportable as an empirical finding* and survives a pre-registered protocol with a
+   dose–response and $p = 5.2 \times 10^{-4}$ — and that we located no prior application of the
+   control to a stability claim, which we state as a search null rather than as a gap.
+2. **Four failure modes observed in a single pre-registered study**, each with the control that
+   detects it and that control's cost. We claim instances, not coverage: one study cannot
+   establish a taxonomy and we do not present one.
+
+Two further outputs are recorded rather than claimed as contributions. The study is a
+pre-registered VaR null with dated amendments, several of which weakened the authors' own
+position — pre-registration remains rare in this domain, with **≤ 1% of economics journals**
+having adopted the registered-report format as of July 2023 (Lin et al. 2024). And Appendix A
+describes an append-only **test-touch ledger** that makes evaluation reuse countable rather than
+reconstructible after the fact.
 
 ## 2. Setup
 
@@ -161,11 +184,12 @@ tabulating — but a reader who knows the literature will find nothing structura
 to §3.3. They are the price of admission.
 
 **The fourth is not.** It is the only one where the finding survived every statistical control
-available — multiplicity correction, dose–response, replication across four runs, a sign test at
-$p = 5.2 \times 10^{-4}$ — and dissolved only when asked a question that is not statistical at all: *does the
-mechanism guarantee this result regardless of whether the hypothesis is true?* §3.4 and §3.5 are
-the substance of the paper; §3.1 to §3.3 establish that the study was careful enough for §3.4 to
-be surprising.
+the protocol specified — multiplicity correction, dose–response, replication across four runs, a
+sign test at $p = 5.2 \times 10^{-4}$ — and dissolved only when asked a question that is not
+statistical at all: *does the mechanism guarantee this result regardless of whether the
+hypothesis is true?* §3.4 and §3.5 are the substance of the paper. **§3.1 to §3.3 are not
+offered as contributions**; they are here to establish that the study was careful enough for
+§3.4 to be surprising, and they are kept short for that reason.
 
 ### 3.1 "Anchoring improves out-of-sample loss" — multiplicity
 
@@ -189,30 +213,12 @@ missed 91% of the time.
 The correct statement is *undetermined*, not *chance*. We also retract our earlier framing of
 four configurations as independent replications: they share assets and periods.
 
-**And "undetermined" is still not the whole answer.** Cawley and Talbot (2010) established that
-a model-selection criterion is itself an estimator with a variance, and that optimising it over
-a finite sample **over-fits the criterion** exactly as training over-fits the data. Two of their
-findings apply directly:
-
-- They deliberately construct *"a split-sample based model selection strategy with a relatively
-  high variance, **due to the limited size of the validation set**"* — which is our design, not
-  a pathological case. Enlarging the validation block tightens the selected hyper-parameter
-  around the optimum; ours was fixed and short.
-- More seriously: *"the effects of this form of over-fitting are often of **comparable magnitude
-  to differences in performance between learning algorithms**."* Our observed anchoring edges
-  are 1–8% of the loss level. **If selection over-fitting operates at the same scale as the
-  effect being measured, the comparison was conducted inside the noise floor of its own
-  selection step** — a stronger and more specific statement than "underpowered."
-
-They also observe that the criterion surface is often *"a broad valley,"* so a badly chosen
-hyper-parameter can still generalise adequately. That is a better account of our 37.5% than the
-one we first gave: not that selection carries no signal, but that the surface is flat and the
-block is short.
-
-Their prescribed remedy — *"evaluation … should always involve multiple partitions of the data
-to form training/validation and test sets"* — is only partly available here, because the data
-are time series and shuffling would leak. The available version is multiple **chronological**
-origins. We did not run them. That is a limitation, not a defence.
+**And "undetermined" is still not the whole answer.** Cawley and Talbot (2010) established
+that a model-selection criterion is itself an estimator with a variance, and that optimising it
+over a finite sample over-fits the criterion exactly as training over-fits the data. Their
+analysis applies to this design directly, and sharpens the verdict from "underpowered" to
+**the comparison was conducted inside the noise floor of its own selection step**. Appendix E
+gives the argument, the quotations, and the remedy we did not run.
 
 *Control: a power calculation. Cost: free. Never performed until a reviewer demanded it.
 The relevant literature is from 2010 and we did not read it until after the result.*
@@ -227,6 +233,10 @@ convergence was not recorded and so is unfalsifiable.
 *Control: compare effect sizes to the models' own seed dispersion. Cost: free.*
 
 ### 3.4 "Anchoring stabilises the estimator" — tautology
+
+*Read this subsection as the exhibit, not as evidence (§1.2): every number below is
+validation-grade, and its function here is to show what the artefact looked like to the people
+producing it.*
 
 This was the strongest result in the project. Across four runs the anchored estimator had lower
 inter-seed IQR in 19/20, 21/23, 25/27 and **15/16** comparisons (primary set: $p = 5.2 \times 10^{-4}$,
@@ -371,8 +381,11 @@ contracts the parameter separation slightly less.
 | 0.1000 | 50.40× | 79.23× | 1.57 |
 
 **Paired at each weight**, the uninformative anchor stabilises **at least as much as the true
-optimum at 9 of 10 weights** (sign test **$p = 0.021$**), with a median relative ratio of
-**1.04 (95% CI 1.0–1.8)**. The dose–response is emphatic and holds for every anchor
+optimum at 9 of 10 weights**, with a median relative ratio of **1.04 (95% CI 1.0–1.8)**. An
+earlier version attached a sign test to that count ($p = 0.021$); it is withdrawn (Appendix
+B.3). The ten cells are ten points along one smooth monotone curve, not ten independent draws.
+The count is reported as a description. **The claim rests on the paired ratio and on the
+cancellation of $a$ in the derivation above, neither of which needs the test.** The dose–response is emphatic and holds for every anchor
 (Spearman ρ = **+0.974**, $p = 1.3 \times 10^{-19}$, n = 30), reproducing the pattern we had taken as
 corroboration in the real study (ρ = +0.585).
 
@@ -388,11 +401,14 @@ prior permuted in time; the effect is unchanged. Panel (b) overlays the analytic
 the anchor's value. Both the true and the nonsense anchor track it. The dashed line is the whole
 argument: it predicts the data without knowing what the data was shrunk toward.
 
-> **This section was itself corrected twice, and both corrections are reported in Appendix B.**
-> An earlier version ran four weights and quoted the single most extreme cell; and the file this
-> draft reads its numbers from was later found to be stale, still holding the retracted values.
-> Neither changes the conclusion; both are the practice §3.1 criticises, committed in our own
-> showcase.
+> **This section was itself corrected three times, and all three corrections are reported in
+> Appendix B.**
+> An earlier version ran four weights and quoted the single most extreme cell; the file this
+> draft reads its numbers from was later found to be stale, still holding the retracted values;
+> and the sign test once attached to the paired count was withdrawn, because ten points along
+> one smooth curve are not ten independent draws. None of the three changes the conclusion. The
+> first two are the practice §3.1 criticises, committed in our own showcase; the third is the
+> standard of §3.2 applied to the one statistic that had been exempt from it.
 
 **The paired column above is the paper's central point.** Stability rises with the penalty for
 any target; usefulness depends on the target being right. A study that reports the first as
@@ -452,6 +468,7 @@ From the append-only ledger, not a hand count:
 
 | quantity | value |
 |---|---|
+| specifications evaluated | **3,555** (lower bound) |
 | test-set evaluations | **1,959** |
 | asset–level cells | 16 |
 | maximum scoring passes on one cell | **4** |
@@ -463,6 +480,16 @@ this project has several validation blocks and **no test set**.
 
 The ledger figure exceeds the 1,899 first reconstructed from run manifests: **60 evaluations
 appear in no manifest at all**, and were found only because the ledger was built (Appendix A).
+
+**The two integers do not have equal standing, and the second is a floor.** Test-set
+evaluations are read from the append-only ledger. Specifications evaluated are summed from the
+four batch run manifests — the record the ledger exists to distrust. The two debugging runs
+that contribute the 60 uncounted evaluations have no batch manifest, so whatever they tried is
+not in the 3,555. We report the number anyway, marked as a lower bound: the protocol requires
+the integer, and a count with a stated floor is worth more than an omission. That the
+specification count cannot be derived as cleanly as the evaluation count is itself the
+argument for building the ledger — and an argument for building its equivalent on the
+specification side, which we did not do.
 
 ## 5. Three defects, all in the same direction
 
@@ -534,7 +561,7 @@ otherwise.
 | **Citation verification** | 5 of 20 references wrong, one backwards | hours |
 
 The two controls that destroyed the two surviving findings are also the two cheapest. Neither
-appears in any of the four machine-learning VaR papers surveyed in §1 — including the one that
+appears in any of the five machine-learning VaR papers surveyed in §1 — including the one that
 handles held-out selection, consistent scoring and ensembling properly.
 
 Neither is exotic, either. Power analysis is standard in clinical trials and psychology;
@@ -613,7 +640,7 @@ The disclosure integers in §4 are read from it (`python -m value_at_risk.evalua
 manifest** — two early debugging runs — which is the discrepancy an append-only record exists to
 surface.
 
-## Appendix B — Two corrections to our own demonstration
+## Appendix B — Three corrections to our own demonstration
 
 **B.1 — The cherry-picked cell.** §3.5 originally ran four weights and reported that the
 worthless anchor *"stabilises 2.5× more"* than the true one. That figure was the largest of four
@@ -647,6 +674,19 @@ guard the specific retracted values by name. **The lesson generalises past this 
 "numbers are never typed by hand" is not sufficient — the file they are read from must itself be
 derived.** Finding such a defect once is luck; the useful question is how many files of that kind
 a project has. Ours had two, and both were stale.
+
+**B.3 — A p-value of our own, withdrawn.** §3.5 reported the paired count of 9 of 10 weights
+with a sign test at $p = 0.021$. The test assumes ten independent draws. The ten cells are a
+log-spaced grid along one smooth monotone contraction curve, so they are not independent and
+the effective sample size is smaller than ten. This is the same defect §3.2 identifies in this
+project's own earlier framing of four configurations as independent replications, and it fails
+the same standard by which we ruled n = 16 insufficient there, n = 3 in §5, and n = 2 in
+Appendix C — applied everywhere except to the one statistic that supported us. It was found in
+a post-submission audit of this paper's own statistics; neither referee raised it. The count
+stands as a description, the p-value is withdrawn, and the claim now rests on the median paired
+ratio and on the analytic cancellation. **The demonstration loses a statistic and does not lose
+the result**, which is what it means for a claim to have been resting on the mechanism rather
+than on the test.
 
 ## Appendix C — The citation audit
 
@@ -704,6 +744,38 @@ institutionalised, and not one of the controls that defeated this study.
 
 ---
 
+## Appendix E — Selection over-fitting in this design
+
+Moved from §3.2, where it interrupted a subsection that exists to be short.
+
+**And "undetermined" is still not the whole answer.** Cawley and Talbot (2010) established that
+a model-selection criterion is itself an estimator with a variance, and that optimising it over
+a finite sample **over-fits the criterion** exactly as training over-fits the data. Two of their
+findings apply directly:
+
+- They deliberately construct *"a split-sample based model selection strategy with a relatively
+  high variance, **due to the limited size of the validation set**"* — which is our design, not
+  a pathological case. Enlarging the validation block tightens the selected hyper-parameter
+  around the optimum; ours was fixed and short.
+- More seriously: *"the effects of this form of over-fitting are often of **comparable magnitude
+  to differences in performance between learning algorithms**."* Our observed anchoring edges
+  are 1–8% of the loss level. **If selection over-fitting operates at the same scale as the
+  effect being measured, the comparison was conducted inside the noise floor of its own
+  selection step** — a stronger and more specific statement than "underpowered."
+
+They also observe that the criterion surface is often *"a broad valley,"* so a badly chosen
+hyper-parameter can still generalise adequately. That is a better account of our 37.5% than the
+one we first gave: not that selection carries no signal, but that the surface is flat and the
+block is short.
+
+Their prescribed remedy — *"evaluation … should always involve multiple partitions of the data
+to form training/validation and test sets"* — is only partly available here, because the data
+are time series and shuffling would leak. The available version is multiple **chronological**
+origins. We did not run them. That is a limitation, not a defence.
+
+*Control: a power calculation. Cost: free. Never performed until a reviewer demanded it. The
+relevant literature is from 2010 and we did not read it until after the result.*
+
 ## Reproducibility statement
 
 Every number in this paper is read from a result file. None is typed by hand, and the
@@ -730,4 +802,4 @@ else in the repository.
 persisted (§3.5), so seed-level intervals cannot be recomputed from the archived outputs — only
 comparison-level ones. The pipeline now persists them; the archived results predate the fix.
 
-*Code and frozen data: `[repository DOI — to be minted at submission]`.*
+*Code and frozen data: `https://doi.org/10.5281/zenodo.22020014`.*

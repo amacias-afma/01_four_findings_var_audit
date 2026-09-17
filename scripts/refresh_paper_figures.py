@@ -36,6 +36,8 @@ DEMO_CSV = os.path.join("outputs", "shrinkage_demo", "synthetic_shrinkage.csv")
 DEMO_PAIRED = os.path.join("outputs", "shrinkage_demo", "paired_comparison.json")
 FIGURES = os.path.join("outputs", "paper_figures.json")
 INTERVALS = os.path.join("outputs", "bootstrap_intervals.json")
+LEDGER = os.path.join("outputs", "test_touch_ledger.jsonl")
+BATCH_MANIFESTS = os.path.join("outputs", "**", "anchored_batch_meta.json")
 
 TRUTH = "informative (truth)"
 NONSENSE = "nonsense (scale-matched)"
@@ -77,6 +79,51 @@ def demo_fields(csv_path: str = DEMO_CSV, paired_path: str = DEMO_PAIRED) -> dic
         "demo_paired_ci_high": float(paired["rel_ci"]["ci_high"]),
     })
     return out
+
+
+def disclosure_fields(ledger_path: str = LEDGER,
+                      manifest_glob: str = BATCH_MANIFESTS) -> dict:
+    """Derive the Section 4 disclosure integers. Both of them.
+
+    ``standards/figures-and-disclosure.md`` requires two integers: specifications evaluated
+    and test-set evaluations. Only the second was ever in the draft, and neither was covered
+    by this script -- ``paper_figures.json`` carried ``evals``/``cells``/``once``/
+    ``passes_max`` as literals, unguarded by ``--check``, in the file the header promises
+    every number is read from. That is the Appendix B defect with a different file name.
+
+    The two integers do not have equal standing and the fields record which is which:
+
+    * ``evals`` and friends come from the append-only ledger, which is authoritative.
+    * ``specs`` is summed from the batch run manifests -- the record the ledger exists to
+      distrust. Two early debugging runs have no batch manifest (they are the 60 uncounted
+      evaluations), so their specifications are not in this total. ``specs`` is a LOWER
+      BOUND and ``specs_is_lower_bound`` says so.
+    """
+    import glob
+
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+    from value_at_risk.evaluation.ledger import summarise
+
+    s = summarise(ledger_path)
+    passes = s["passes_per_cell"]
+
+    specs = manifest_evals = 0
+    for path in sorted(set(glob.glob(manifest_glob, recursive=True))):
+        with open(path, encoding="utf-8") as f:
+            m = json.load(f)
+        specs += int(m["specifications_evaluated"])
+        manifest_evals += int(m["test_set_evaluations"])
+
+    return {
+        "evals": int(s["test_set_evaluations"]),
+        "cells": int(s["cells"]),
+        "once": len(s["cells_touched_once"]),
+        "passes_max": max(passes.values()) if passes else 0,
+        "specs": specs,
+        "specs_manifest_evals": manifest_evals,
+        "evals_no_manifest": int(s["test_set_evaluations"]) - manifest_evals,
+        "specs_is_lower_bound": 1,
+    }
 
 
 def synthetic_intervals(csv_path: str = DEMO_CSV) -> dict:
@@ -147,12 +194,13 @@ def main() -> int:
                     help="verify the figures file matches the demo outputs; do not write")
     args = ap.parse_args()
 
-    for p in (DEMO_CSV, DEMO_PAIRED, FIGURES):
+    for p in (DEMO_CSV, DEMO_PAIRED, FIGURES, LEDGER):
         if not os.path.exists(p):
             print(f"MISSING: {p}", file=sys.stderr)
             return 2
 
     derived = demo_fields()
+    derived.update(disclosure_fields())
     with open(FIGURES, encoding="utf-8") as f:
         figures = json.load(f)
 

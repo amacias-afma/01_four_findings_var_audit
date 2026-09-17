@@ -1,0 +1,34 @@
+Moved from \Cref{sec:power}, where it interrupted a subsection that exists to be short.
+
+\textbf{And ``undetermined'' is still not the whole answer.} \citet{cawley2010over} established that
+a model-selection criterion is itself an estimator with a variance, and that optimising it over
+a finite sample \textbf{over-fits the criterion} exactly as training over-fits the data. Two of their
+findings apply directly:
+
+\begin{itemize}
+\tightlist
+\item
+  They deliberately construct \emph{``a split-sample based model selection strategy with a relatively
+  high variance, \textbf{due to the limited size of the validation set}''} --- which is our design, not
+  a pathological case. Enlarging the validation block tightens the selected hyper-parameter
+  around the optimum; ours was fixed and short.
+\item
+  More seriously: \emph{``the effects of this form of over-fitting are often of \textbf{comparable magnitude
+  to differences in performance between learning algorithms}.''} Our observed anchoring edges
+  are 1--8\% of the loss level. \textbf{If selection over-fitting operates at the same scale as the
+  effect being measured, the comparison was conducted inside the noise floor of its own
+  selection step} --- a stronger and more specific statement than ``underpowered.''
+\end{itemize}
+
+They also observe that the criterion surface is often \emph{``a broad valley,''} so a badly chosen
+hyper-parameter can still generalise adequately. That is a better account of our 37.5\% than the
+one we first gave: not that selection carries no signal, but that the surface is flat and the
+block is short.
+
+Their prescribed remedy --- \emph{``evaluation \ldots{} should always involve multiple partitions of the data
+to form training/validation and test sets''} --- is only partly available here, because the data
+are time series and shuffling would leak. The available version is multiple \textbf{chronological}
+origins. We did not run them. That is a limitation, not a defence.
+
+\emph{Control: a power calculation. Cost: free. Never performed until a reviewer demanded it. The
+relevant literature is from 2010 and we did not read it until after the result.}

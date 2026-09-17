@@ -21,6 +21,12 @@ from __future__ import annotations
 
 import glob
 import json
+# NOTE: figure titles and explanatory notes are NOT drawn into the image. They belong in the
+# LaTeX caption (scripts/import_tex.py, FIGURES), because standards/figures-and-disclosure.md
+# requires the caption alone to carry what is plotted, the sample, n, and the takeaway -- and
+# text rasterised into a PNG is not selectable, not searchable, and not translatable. Panel
+# labels "(a)"/"(b)" stay in the image: they identify sub-axes, not the figure.
+
 import os
 
 import matplotlib
@@ -85,17 +91,11 @@ def figure1(outdir: str) -> dict:
     ax.set_yscale("log")
     ax.set_xlabel("anchor weight selected on validation  (log)")
     ax.set_ylabel("inter-seed IQR reduction\nunanchored / anchored  (log)")
-    ax.set_title("Figure 1  The dose-response that convinced us", loc="left", fontsize=10)
     ax.annotate(f"Spearman $\\rho$ = +{rho:.3f}\n$p$ = {p:.1e},  $n$ = {len(d)}",
                 xy=(0.03, 0.95), xycoords="axes fraction", va="top", fontsize=8,
                 bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="0.8", lw=0.6))
     ax.legend(fontsize=7, frameon=False, ncol=4, loc="upper center",
               bbox_to_anchor=(0.5, -0.22), columnspacing=1.2, handletextpad=0.3)
-    fig.text(0.01, -0.10,
-             "Stronger shrinkage, more stability. The relationship is real and it is "
-             "mechanical:\nan L2 penalty contracts every seed toward the same fixed point "
-             "whatever that point is.",
-             fontsize=7.5, color="0.35", va="top")
     fig.tight_layout()
     path = os.path.join(outdir, "figure1_dose_response.png")
     fig.savefig(path, bbox_inches="tight")
@@ -160,17 +160,15 @@ def figure2(outdir: str) -> dict:
     with open(os.path.join("outputs", "shrinkage_demo", "paired_comparison.json"),
               encoding="utf-8") as fh:
         paired = json.load(fh)["paired"]
+    # The sign test that used to appear here was WITHDRAWN (Appendix B.3): the ten grid cells
+    # lie along one smooth monotone curve, so they are not the independent draws it assumes.
+    # The annotation reports the count and the paired ratio, which is what Section 3.5 claims.
     axR.annotate(
         f"nonsense stabilises >= truth\nat {paired['nonsense_at_least_as_stabilising']} of "
-        f"{paired['n_weights']} weights\nsign test $p$ = {paired['sign_test_p']:.3f}",
+        f"{paired['n_weights']} weights\nmedian ratio {paired['median_relative']:.2f}",
         xy=(0.97, 0.05), xycoords="axes fraction", ha="right", va="bottom", fontsize=7.5,
         bbox=dict(boxstyle="round,pad=0.35", fc="white", ec="0.8", lw=0.6))
 
-    fig.text(0.01, -0.03,
-             "The dashed curve is derived from the penalty gradient alone and contains no "
-             "reference to the anchor's value.\nBoth anchors track it. Stability measures the "
-             "penalty; only forecast loss measures whether the target was any good.",
-             fontsize=7.5, color="0.35", va="top")
     fig.tight_layout()
     path = os.path.join(outdir, "figure2_control.png")
     fig.savefig(path, bbox_inches="tight")

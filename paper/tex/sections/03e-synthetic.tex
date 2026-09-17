@@ -112,8 +112,11 @@ weight & truth & nonsense & nonsense $\div$ truth\tabularnewline
 \end{longtable}
 
 \textbf{Paired at each weight}, the uninformative anchor stabilises \textbf{at least as much as the true
-optimum at 9 of 10 weights} (sign test \textbf{\(p = 0.021\)}), with a median relative ratio of
-\textbf{1.04 (95\% CI 1.0--1.8)}. The dose--response is emphatic and holds for every anchor
+optimum at 9 of 10 weights}, with a median relative ratio of \textbf{1.04 (95\% CI 1.0--1.8)}. An
+earlier version attached a sign test to that count (\(p = 0.021\)); it is withdrawn (Appendix
+B.3). The ten cells are ten points along one smooth monotone curve, not ten independent draws.
+The count is reported as a description. \textbf{The claim rests on the paired ratio and on the
+cancellation of \(a\) in the derivation above, neither of which needs the test.} The dose--response is emphatic and holds for every anchor
 (Spearman $\rho$ = \textbf{+0.974}, \(p = 1.3 \times 10^{-19}\), n = 30), reproducing the pattern we had taken as
 corroboration in the real study ($\rho$ = +0.585).
 
@@ -123,8 +126,9 @@ axes, and only the second is evidence.}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{figures/figure2_control.png}\label{fig:control}
-\caption{Figure 2}
+\includegraphics[width=\linewidth]{figures/figure2_control.png}
+\caption{\textbf{The same effect, with a matched control.} (a) Empirical, three assets at $\alpha = 0.05$: replacing the anchor with a scale-matched permutation of itself leaves the stabilisation intact --- the permuted anchor stabilises at least as much as the real one in 3 of 6 comparisons (Wilcoxon $p = 0.84$). (b) Synthetic, ground truth known: inter-seed IQR reduction against penalty weight $w$ over a ten-point log-spaced grid and 40 seeds, for the true optimum and a scale-matched nonsense anchor; $n = 30$ non-zero-weight cells. The contraction tracks the penalty, not the target.}
+\label{fig:control}
 \end{figure}
 
 \textbf{Figure 2 is Figure 1 with a control.} Panel (a) repeats the empirical comparison against a
@@ -134,11 +138,14 @@ the anchor's value. Both the true and the nonsense anchor track it. The dashed l
 argument: it predicts the data without knowing what the data was shrunk toward.
 
 \begin{quote}
-\textbf{This section was itself corrected twice, and both corrections are reported in \Cref{app:corrections}.}
-An earlier version ran four weights and quoted the single most extreme cell; and the file this
-draft reads its numbers from was later found to be stale, still holding the retracted values.
-Neither changes the conclusion; both are the practice \Cref{sec:multiplicity} criticises, committed in our own
-showcase.
+\textbf{This section was itself corrected three times, and all three corrections are reported in
+\Cref{app:corrections}.}
+An earlier version ran four weights and quoted the single most extreme cell; the file this
+draft reads its numbers from was later found to be stale, still holding the retracted values;
+and the sign test once attached to the paired count was withdrawn, because ten points along
+one smooth curve are not ten independent draws. None of the three changes the conclusion. The
+first two are the practice \Cref{sec:multiplicity} criticises, committed in our own showcase; the third is the
+standard of \Cref{sec:power} applied to the one statistic that had been exempt from it.
 \end{quote}
 
 \textbf{The paired column above is the paper's central point.} Stability rises with the penalty for
@@ -151,11 +158,10 @@ itself new; what we document is that it is \textbf{reportable as an empirical fi
 survives a pre-registered protocol with a dose--response and \(p = 5.2 \times 10^{-4}\), and that a
 scale-matched permuted control detects it for minutes of compute.
 
-\textbf{Nothing about that control is ours.} It is a restricted randomization test (Fisher 1935;
-Pitman 1937; Ojala \& Garriga 2010), and the move it makes --- randomize the input a claim depends
+\textbf{Nothing about that control is ours.} It is a restricted randomization test \citep{fisher1935design,pitman1937significance,ojala2010permutation}, and the move it makes --- randomize the input a claim depends
 on and check whether the claim survives --- is the move behind the random-label experiment of
-Zhang et al.~(2017), the model- and data-randomization sanity checks of Adebayo et al.~(2018),
-and the placebo laws of Bertrand, Duflo and Mullainathan (2004), who found conventional
+\citet{zhang2017understanding}, the model- and data-randomization sanity checks of \citet{adebayo2018sanity},
+and the placebo laws of \citet{bertrand2004how}, who found conventional
 difference-in-differences standard errors significant at 5\% for up to 45\% of interventions that
 never happened. Four literatures already treat this as routine.
 
@@ -168,8 +174,7 @@ more defensible claim than novelty.
 
 \textbf{And the practice we set out to criticise turns out to be handled correctly where it
 originates.} We expected to find regularisers proposed as remedies for run-to-run variance with
-the resulting stability offered as evidence of quality. The first half is true: Bhojanapalli et
-al.~(2021) propose exactly such regularisers. The second half is false --- they report accuracy
+the resulting stability offered as evidence of quality. The first half is true: \citet{bhojanapalli2021reproducibility} propose exactly such regularisers. The second half is false --- they report accuracy
 beside stability throughout, include a deterministic zero-variance control, and state our own
 \Cref{sec:synthetic} point in prose (\Cref{app:survey}).
 
@@ -181,7 +186,7 @@ the penalty can support.
 
 The failure is therefore not a field's carelessness but what happens when a concept crosses
 domains and its controls do not travel with it. The one documented instance of the inference
-being made explicitly is a VaR paper (Petneházi 2019), offering \emph{``consistently lower standard
+being made explicitly is a VaR paper \citep{petnehazi2021quantile}, offering \emph{``consistently lower standard
 deviation than the benchmark methods\ldots{} which also justifies that this one produces the highest
 quality VaR estimates''} with no matched control. We made the same move, in the same domain, four
 years later.

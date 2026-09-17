@@ -1,0 +1,33 @@
+# Line endings.
+#
+# This repo is edited from Windows and from a Linux sandbox. Without this file git saw
+# 22 result files as modified with 4,808 insertions and 4,808 deletions — an exactly equal
+# count, which is the signature of a CRLF/LF change rather than a content change.
+# `git diff --ignore-cr-at-eol` confirmed it: nothing in the numbers moved.
+#
+# That matters more here than in most projects. This paper's central claim is that every
+# reported figure is read from a result file, and a diff that shows every line of every
+# result file as changed makes a real change indistinguishable from noise. A reviewer
+# auditing the history could not tell the two apart, and neither could we.
+#
+# Normalise text to LF in the repository; git checks out the platform's convention.
+* text=auto eol=lf
+
+# Binary — never touch these.
+*.png binary
+*.pdf binary
+*.zip binary
+
+# Result files: keep them diffable and normalised, so a genuine change to a number is
+# visible as a one-line diff.
+*.csv  text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.md   text eol=lf
+*.tex  text eol=lf
+*.bib  text eol=lf
+*.py   text eol=lf
+
+# After adding this file, run once to renormalise the index:
+#   git add --renormalize .
+#   git commit -m "Normalise line endings"

@@ -16,30 +16,55 @@ is pre-registered.} The controls this field has institutionalised are not the co
 defeated this study. A convenience sample of five cannot establish a base rate and we do not
 claim it does; by the standard \Cref{sec:power} applies to our own nulls, it is an illustration.
 
-\textbf{Contributions.}
+\textbf{Why a VaR study, and why that is not incidental.} The mechanism documented here --- an L2
+penalty contracting inter-seed dispersion toward whatever target it is given --- is Stein/ridge
+shrinkage, and it is not new. Neither is the control. A reader is therefore entitled to ask why
+a known mechanism and a known control are worth a paper. The answer is the domain. Quantile
+forecasting for VaR is unusually well instrumented: established parametric and historical
+baselines, a strictly consistent scoring function, and a set of backtests that practitioners and
+regulators actually run. If a mechanically guaranteed result can be produced \emph{here} --- and
+survive pre-registration, a multiplicity correction, a ten-seed protocol, Diebold--Mariano tests,
+a Model Confidence Set screen, a coverage gate, replication across four runs and a dose--response
+relationship --- then the failure is not a field being careless with a weak checklist.
+\textbf{The instrumentation is what is being tested, and a well-instrumented domain is the strongest
+available place to test it.} A synthetic demonstration alone would establish that the mechanism
+exists; it would not establish that the mechanism survives a real protocol built to catch
+exactly this. That second claim is the contribution, and it is why \Cref{sec:multiplicity} to \Cref{sec:tautology} are in the paper
+at all.
+
+\textbf{What the market study is, and is not.} \Cref{sec:disclosure} discloses 1,959 test-set evaluations across 16
+asset--level cells with \textbf{zero cells scored only once}. By this project's own protocol that means
+the study has several validation blocks and no test set, and every market number in \Cref{sec:findings} is
+validation-grade. We therefore do not offer \Cref{sec:multiplicity}--\Cref{sec:tautology} as evidence about VaR modelling, nor as
+evidence that the mechanism operates. \textbf{They are the exhibit} --- the artefact that a careful
+pre-registered protocol produced, and would have reported. The evidence that the mechanism
+guarantees the result is \Cref{sec:synthetic}, where ground truth is known and the demonstration needs no market
+data at all. Keeping the two apart is the single distinction this paper asks a reader to hold.
+
+\textbf{Contributions.} Two.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  A pre-registered VaR study reporting a complete null, with dated amendments including
-  several that weakened the authors' own position. Pre-registration remains rare in this
-  domain: as of July 2023 \textbf{$\leq$ 1\% of economics journals} had adopted the registered-report
-  format (Lin et al.~2024).
+  \textbf{A mechanically guaranteed result, shown to be reportable.} A demonstration --- analytical
+  and synthetic, with ground truth known --- that \textbf{shrinkage-induced stability is not evidence
+  of a good prior}, together with a scale-matched permutation control that separates the two
+  for minutes of compute. \textbf{Neither the mechanism nor the control is new}: the mechanism is
+  Stein/ridge shrinkage, and the control is a restricted randomization test with precedents in
+  statistics, machine learning and econometrics (\Cref{sec:synthetic}). What is documented is that the artefact
+  is \emph{reportable as an empirical finding} and survives a pre-registered protocol with a
+  dose--response and \(p = 5.2 \times 10^{-4}\) --- and that we located no prior application of the
+  control to a stability claim, which we state as a search null rather than as a gap.
 \item
-  \textbf{Four failure modes observed in a single pre-registered study}, with the control that
-  detects each and its cost. We claim instances, not coverage: one study cannot establish a
-  taxonomy and we do not present one.
-\item
-  A demonstration --- analytical and synthetic, with ground truth known --- that
-  \textbf{shrinkage-induced stability is not evidence of a good prior}, together with a
-  scale-matched permutation control that separates the two for minutes of compute.
-  \textbf{Neither the mechanism nor the control is new}: the mechanism is Stein/ridge shrinkage,
-  and the control is a restricted randomization test with precedents in statistics, machine
-  learning and econometrics (\Cref{sec:synthetic}). What we document is that the artefact is \emph{reportable as an
-  empirical finding}, survives a pre-registered protocol with a dose--response and
-  \(p = 5.2 \times 10^{-4}\) --- and that we located no prior application of the control to a stability claim.
-\item
-  \emph{(Software artefact, \Cref{app:ledger}.)} An append-only \textbf{test-touch ledger} that makes
-  evaluation reuse countable rather than reconstructible after the fact.
+  \textbf{Four failure modes observed in a single pre-registered study}, each with the control that
+  detects it and that control's cost. We claim instances, not coverage: one study cannot
+  establish a taxonomy and we do not present one.
 \end{enumerate}
+
+Two further outputs are recorded rather than claimed as contributions. The study is a
+pre-registered VaR null with dated amendments, several of which weakened the authors' own
+position --- pre-registration remains rare in this domain, with \textbf{$\leq$ 1\% of economics journals}
+having adopted the registered-report format as of July 2023 \citep{lin2024registered}. And \Cref{app:ledger}
+describes an append-only \textbf{test-touch ledger} that makes evaluation reuse countable rather than
+reconstructible after the fact.

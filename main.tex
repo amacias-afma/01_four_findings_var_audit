@@ -30,7 +30,27 @@
 \usepackage{longtable}            % pandoc emits longtable for markdown tables
 \usepackage{array}
 \usepackage{calc}
-\usepackage{caption}
+\usepackage[font=small,labelfont=bf]{caption}
+
+% --- The 'none' counter -----------------------------------------------------
+% pandoc 3.x wraps a caption-less markdown table as
+%     {\def\LTcaptype{none} \begin{longtable}...}
+% which asks LaTeX for a counter named `none` that no package defines, raising
+%     ! LaTeX Error: No counter 'none' defined.
+% once per table — 14 errors here. Defining the counter satisfies the reference; nothing
+% ever prints it, so it has no visible effect.
+%
+% Diagnosis worth recording, because two plausible explanations were wrong first:
+%   - It is not a \captionsetup problem. Scoping the setup to [figure]/[table] made a
+%     minimal test WORSE (3 errors vs 2); package options fixed the toy case and not the
+%     real document.
+%   - It is not distribution-specific in origin. MiKTeX 25.12 surfaced it and TeX Live had
+%     also produced it once the build stopped reusing a cached PDF. It looked like a
+%     MiKTeX quirk only because the earlier "clean" builds were stale.
+% The cause is the pandoc version that generated paper/tex/sections/: those files carry
+% `\toprule\noalign{}`, which is pandoc 3.x output, while the sandbox that first built them
+% ran pandoc 2.9. Defining the counter makes the preamble work with either.
+\newcounter{none}
 \usepackage{enumitem}
 \usepackage{setspace}
 \usepackage[numbers,sort&compress]{natbib}
@@ -46,7 +66,32 @@
 \providecommand{\real}[1]{#1}
 \newlength{\cslhangindent}
 
-\captionsetup{font=small,labelfont=bf}
+% --- Overflowing margins ---------------------------------------------------
+% The first build had 10 overfull boxes; all ten were typewriter text (\T1/lmtt),
+% i.e. inline code spans and verbatim blocks that TeX cannot break. The worst was
+% 193pt — about 2.6 inches into the margin. Two fixes, one per cause:
+%
+% 1. Inline \texttt: allow hyphenation inside typewriter text.
+\usepackage[htt]{hyphenat}
+%
+% 2. Verbatim blocks: let long command lines wrap instead of running off the page.
+\usepackage{fvextra}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{%
+  fontsize=\small, breaklines=true, breakanywhere=true,
+  breaksymbolleft={}, breaksymbolright={}, xleftmargin=0pt}
+%
+% Slightly looser interword spacing, so a long unbreakable token stretches the line
+% rather than exceeding it. Prefer this to \sloppy, which applies document-wide.
+\tolerance=1200
+\emergencystretch=2em
+
+% pandoc's own template ships this patch: it keeps a longtable in the right order when it
+% follows a \paragraph or \subparagraph.
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+
 \setlist{itemsep=2pt,topsep=4pt}
 
 % --- Anonymisation switch -------------------------------------------------
@@ -60,7 +105,10 @@
 % "figures/figure1_dose_response.png"), because that is where they are compiled from by
 % `make` in paper/tex. Listing {paper/tex/} lets the same fragments resolve from the root
 % too, so both builds work from one set of files.
-\graphicspath{{paper/tex/}{paper/tex/figures/}{paper/figures/}{figures/}}
+% paper/figures/ FIRST: it is what scripts/make_figures.py writes. The old order put the
+% duplicate paper/tex/figures/ ahead of it, so regenerated figures were silently ignored
+% and the built PDF kept a months-old image. See tests/test_figures_single_source.py.
+\graphicspath{{paper/}{./}{paper/tex/}}
 
 % --- Document metadata ----------------------------------------------------
 \title{\textbf{Four Findings That Dissolved:\\ A Pre-Registered Audit of a Value-at-Risk Study}}
@@ -156,7 +204,7 @@ Estimation, Permutation Tests, Model Selection Overfitting, Pre-Registration.
 \section{The test-touch ledger}\label{app:ledger}
 \input{paper/tex/sections/A-ledger}
 
-\section{Two corrections to our own demonstration}\label{app:corrections}
+\section{Three corrections to our own demonstration}\label{app:corrections}
 \input{paper/tex/sections/B-corrections}
 
 \section{The citation audit}\label{app:citations}
@@ -164,5 +212,8 @@ Estimation, Permutation Tests, Model Selection Overfitting, Pre-Registration.
 
 \section{The literature survey}\label{app:survey}
 \input{paper/tex/sections/D-survey}
+
+\section{Selection over-fitting in this design}\label{app:selection}
+\input{paper/tex/sections/E-selection}
 
 \end{document}

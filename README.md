@@ -164,3 +164,14 @@ python run_batch_anchored.py --models SimpleQuantileNeuron,QuantileMLP --alphas 
   neural network. That was wrong; corrected 2026-08-19. See paper/references.md.
 - Kupiec (1995); Christoffersen (1998) — VaR backtesting.
 - Diebold & Mariano (1995) — predictive-accuracy comparison.
+
+## Dependencias del sistema (no vienen con pip)
+
+| herramienta | para qué | instalar |
+|---|---|---|
+| **pandoc** | `scripts/import_tex.py` convierte el markdown a LaTeX | `conda install -c conda-forge pandoc` |
+| **LaTeX** (TeX Live / MiKTeX) | compilar `main.tex` | `winget install MiKTeX.MiKTeX` |
+
+`pip install -e .` **no** instala ninguna de las dos. Sin pandoc, `import_tex.py` falla
+con una instrucción; sin LaTeX, `latexmk` no existe. Se documentan aquí porque la primera
+vez el fallo fue un `FileNotFoundError: [WinError 2]` que no explicaba nada.

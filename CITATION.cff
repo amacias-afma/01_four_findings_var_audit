@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "Four Findings That Dissolved: A Pre-Registered Audit of a Value-at-Risk Study"
+abstract: >-
+  Code, frozen data, pre-registration record and execution ledger for a pre-registered
+  Value-at-Risk study that produced four apparently well-supported findings and withdrew
+  all four. Includes the analytical and synthetic demonstration that shrinkage-induced
+  stability is not evidence of a good prior, and the scale-matched permutation control
+  that detects it.
+type: software
+authors:
+  - family-names: "Macias Araya"
+    given-names: "Alvaro Felipe"
+    affiliation: "AFMA Quant AI Lab, AFMA Ingenieria SpA"
+    email: amacias@afmaing.cl
+    # orcid: "https://orcid.org/0000-0000-0000-0000"   # <- add yours before release
+license: MIT
+repository-code: "https://github.com/amacias-afma/01_four_findings_var_audit"
+url: "https://www.afmaing.cl"
+keywords:
+  - Value-at-Risk
+  - reproducibility
+  - pre-registration
+  - shrinkage estimation
+  - permutation test
+  - model selection overfitting
+  - null results
+  - research integrity
+version: "1.0.0"
+date-released: "2026-08-19"

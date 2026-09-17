@@ -1,3 +1,7 @@
+\emph{Read this subsection as the exhibit, not as evidence (\Cref{sec:scope}): every number below is
+validation-grade, and its function here is to show what the artefact looked like to the people
+producing it.}
+
 This was the strongest result in the project. Across four runs the anchored estimator had lower
 inter-seed IQR in 19/20, 21/23, 25/27 and \textbf{15/16} comparisons (primary set: \(p = 5.2 \times 10^{-4}\),
 median ratio \textbf{13.5x, 95\% CI 4.6--20.7}, n = 16), with a clean dose--response between the
@@ -6,8 +10,9 @@ selected weight and the effect:
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{figures/figure1_dose_response.png}\label{fig:dose}
-\caption{Figure 1}
+\includegraphics[width=\linewidth]{figures/figure1_dose_response.png}
+\caption{\textbf{The dose--response that convinced us, and it is an artefact.} Inter-seed IQR reduction (unanchored $\div$ anchored, log scale) against the anchor weight selected on validation, pooled across the four scoring passes; eight instruments, two quantile levels, ten-year frozen snapshots; $n = 85$ comparisons. Spearman $\rho = +0.585$, $p = 4.1 \times 10^{-9}$. The same relationship appears when the anchor is replaced by one carrying no information (\Cref{fig:control}), which is why the curve is not evidence that the prior is good.}
+\label{fig:dose}
 \end{figure}
 
 \textbf{Figure 1 is reproduced because we ourselves found it persuasive.} It is the evidence that
@@ -53,10 +58,10 @@ diagnostic, and it is null. Reporting the aggregate would have preserved the cla
 \textbf{This is a restricted randomization test, and we should have known that before running it.}
 The requirement we arrived at by tripping over the trap above --- that the permuted target must
 preserve the properties irrelevant to the hypothesis and destroy only the one under test --- is
-stated directly by Ojala and Garriga (2010), whose second permutation test permutes features
+stated directly by \citet{ojala2010permutation}, whose second permutation test permutes features
 within classes for exactly this reason: \emph{each randomization method entails a certain null
 distribution, that is, which properties of the original data are preserved.} An off-scale
 control induces a different null and is therefore not diagnostic. We report the sequence
 honestly --- we found the constraint empirically and located its name afterwards --- because the
-control is more credible with a seventy-year lineage (Fisher 1935; Pitman 1937) than as an
+control is more credible with a seventy-year lineage \citep{fisher1935design,pitman1937significance} than as an
 invention of ours.
