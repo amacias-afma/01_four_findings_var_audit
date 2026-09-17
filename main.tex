@@ -111,7 +111,7 @@
 \graphicspath{{paper/}{./}{paper/tex/}}
 
 % --- Document metadata ----------------------------------------------------
-\title{\textbf{Four Findings That Dissolved:\\ A Pre-Registered Audit of a Value-at-Risk Study}}
+\title{\textbf{Stability Is Not Evidence:\\ Shrinkage Artefacts in a Pre-Registered\\ Neural Value-at-Risk Study}}
 
 \ifanonymous
   \author{Anonymous authors\\\textit{Paper under double-blind review}}
@@ -126,7 +126,7 @@
   }
 \fi
 
-\date{\today}
+\date{Version 2 --- September 2026\thanks{Version 1 (July 2026, SSRN 7317079) circulated as \emph{Prior-Anchored Deep Learning VaR: Beyond the Limitations of Naive LSTMs} and claimed a positive result. \Cref{sec:provenance} and \Cref{sec:defects} record why that claim was withdrawn; this version supersedes it.}}
 
 \begin{document}
 \maketitle
@@ -138,7 +138,8 @@
 \ifanonymous\else
 \vspace{1em}
 \noindent\textbf{Keywords:} Value-at-Risk, Machine Learning Reproducibility, Shrinkage
-Estimation, Permutation Tests, Model Selection Overfitting, Pre-Registration.
+Estimation, Permutation Tests, Model Selection Overfitting, Pre-Registration.\\
+\noindent\textbf{JEL:} C45, C52, C53, G32.
 \fi
 
 \newpage
@@ -184,7 +185,7 @@ Estimation, Permutation Tests, Model Selection Overfitting, Pre-Registration.
 \section{Checks on this study's own analysis}\label{sec:checks}
 \input{paper/tex/sections/06-checks}
 
-\section{The taxonomy}\label{sec:taxonomy}
+\section{Controls, what they caught, and what they cost}\label{sec:taxonomy}
 \input{paper/tex/sections/07-taxonomy}
 
 \section{Limitations}\label{sec:limitations}

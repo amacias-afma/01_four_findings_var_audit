@@ -1,4 +1,4 @@
-# Four Findings That Dissolved: A Pre-Registered Audit of a Value-at-Risk Study
+# Stability Is Not Evidence: Shrinkage Artefacts in a Pre-Registered Neural Value-at-Risk Study
 
 **Draft v1** — G5. Every number is read from a result file — `outputs/paper_figures.json`
 (derived from the result CSVs and the test-touch ledger), `outputs/bootstrap_intervals.json`,
@@ -547,7 +547,7 @@ code that scored them was revised after inspecting `^GSPC`'s output — that is 
 2 were found. This is weaker than a pristine holdout and we say so rather than claiming
 otherwise.
 
-## 7. The taxonomy
+## 7. Controls, what they caught, and what they cost
 
 | control | what it caught | cost |
 |---|---|---|
@@ -582,6 +582,10 @@ historical failures, and a mechanically guaranteed result is nobody's historical
   run. Every selection result here rests on one draw of one split.
 - The nonsense-prior control was run on three assets at one level; it is decisive about
   mechanism, not about magnitude.
+- The analytical contraction in §3.5 drops a loss-gradient term and defends that step on a
+  factor that cancels between anchored and unanchored runs; the cancellation was verified on
+  the same grid, seeds and step budget it defends. A sweep over learning rate and step count
+  was not run.
 - We report a case study, not a survey. We do not claim these four failure modes are the most
   common ones, only that all four occurred in a single well-intentioned study.
 
@@ -786,7 +790,7 @@ CSVs, and both figures.
 
 ```bash
 pip install -e ".[run]"
-python -m pytest -q                                  # 115 passed, 5 skipped
+python -m pytest -q                                  # 123 passed, 5 skipped
 python -m value_at_risk.data.snapshot --verify       # frozen inputs, sha256
 python -m value_at_risk.evaluation.ledger --summary  # the disclosure integers
 python scripts/refresh_paper_figures.py --check      # figures file vs result files

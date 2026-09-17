@@ -44,7 +44,7 @@ MAP = [
     ("## 4. Disclosure",                         "04-disclosure"),
     ("## 5. Three defects",                      "05-defects"),
     ("## 6. Checks on this study",               "06-checks"),
-    ("## 7. The taxonomy",                       "07-taxonomy"),
+    ("## 7. Controls, what they caught",                       "07-taxonomy"),
     ("## 8. Limitations",                        "08-limitations"),
     ("## 9. Conclusion",                         "09-conclusion"),
     ("## Reproducibility statement",             "10-reproducibility"),

@@ -1,4 +1,4 @@
-# Project 01 — Anchored NN for Value-at-Risk
+# Anchored neural Value-at-Risk — a pre-registered audit (Project 01)
 
 > **Does anchoring a quantile-loss neural network to a classical VaR prior improve its
 > out-of-sample tail forecasts?**
@@ -66,10 +66,10 @@ Reported in full — the ablation row is the most informative one.
 `scoring.py` and `protocol.py` are pure numpy/scipy and covered by golden tests:
 
 ```bash
-cd 01_value_at_risk
+cd 01_four_findings_var_audit
 pip install -e .            # required: src/ layout, makes `value_at_risk` importable
 pip install -e ".[run]"     # + torch / arch / yfinance, needed to actually run the study
-python -m pytest -q         # 50 passed (paths come from pyproject, no PYTHONPATH needed)
+python -m pytest -q         # 123 passed, 5 skipped (paths come from pyproject, no PYTHONPATH needed)
 ```
 
 ## Evaluation protocol (`protocol.py`)
@@ -80,25 +80,33 @@ python -m pytest -q         # 50 passed (paths come from pyproject, no PYTHONPAT
   the best seed. If the inter-seed IQR swamps the model-vs-benchmark gap, the honest conclusion
   is "no detectable difference".
 
-## Status — honest gaps (work in progress)
+## Status — closed
 
-The batch results in `outputs/` are an early single-seed pass and are **not yet the reported
-numbers.** Before this is a defensible article:
+The study is complete and the paper is closed: **a pre-registered null.** Anchoring does not
+improve out-of-sample pinball loss, and the one finding that looked robust — reduced inter-seed
+dispersion — is an algebraic consequence of L2 shrinkage toward any fixed target, real or
+nonsense. Every market result is validation-grade: the test block was scored four times and the
+paper says so.
 
-- [ ] Rewire the notebook pipeline to the chronological VAL/TEST split in `protocol.py`
-      (hyperparameters currently chosen without a held-out VAL block).
-- [ ] Run the NN models over ≥ 10 seeds and report median + IQR.
-- [x] Add pinball loss + Diebold–Mariano / MCS to the batch summary — tooling in
-      `evaluation/{mcs,report,benchmarks}.py`, driven by `run_batch_anchored.py`
-      (writes `outputs/anchored_batch_summary.{csv,md}`). **Outputs still need regenerating**;
-      the old pass/fail `batch_summary.md` is deprecated.
-- [x] Freeze and hash the input data — `data/snapshot.py` writes hash-verified CSV snapshots
-      + manifest; `prepare()` reads them. **Run `python -m value_at_risk.data.snapshot` and
-      commit `data/snapshots/` to pin the study's inputs.**
-- [x] Fix the GARCH rescaling blow-up (e.g. BTC max reserve ≈ −443%) — the standardized-t
-      quantile was divided by `sqrt((nu-2)/nu)` instead of multiplied; fixed in
-      `garch_model.standardized_t_quantile`. **Outputs still need regenerating.**
-- [ ] Disclose the two integers: specifications evaluated, and test-set evaluations.
+**Paper:** *Stability Is Not Evidence: Shrinkage Artefacts in a Pre-Registered Neural
+Value-at-Risk Study* — `main.pdf`, built from `paper/draft-v1.md` (see `ESTADO.md` for the
+build rule). It supersedes the July 2026 SSRN preprint *Prior-Anchored Deep Learning VaR*, whose
+positive result did not survive this audit; a frozen copy of that preprint is kept in
+`paper/_ssrn_v1_prior_anchored/` as the record of the starting state.
+
+**Disclosure integers** (read from the ledger and the run manifests, never counted by hand):
+3,555 specifications evaluated; 1,959 test-set evaluations across 16 asset-level cells, four
+scoring passes, zero cells scored once.
+
+**Checks that must pass before anything is published:**
+
+```bash
+python -m pytest -q                                   # 123 passed, 5 skipped
+python scripts/refresh_paper_figures.py --check       # summaries vs result CSVs
+python scripts/import_tex.py --check                  # LaTeX current with the markdown
+python scripts/check_bib.py                           # refs.bib vs references.md
+python -m value_at_risk.evaluation.ledger --summary   # the disclosure integers
+```
 
 ## Layout
 
@@ -122,7 +130,7 @@ src/value_at_risk/
     report.py                ranked ladder table (pinball · DM · MCS · gate)
 run_experiment.py            one ticker × one α  → results CSV + meta.json
 run_batch_anchored.py        panel × α levels    → anchored_batch_summary.{csv,md}
-tests/                       43 tests, no torch required for the scoring/registry layer
+tests/                       120 tests; torch needed only for the training layer
 _archive/                    superseded pipeline + stale results (see _archive/README.md)
 ```
 

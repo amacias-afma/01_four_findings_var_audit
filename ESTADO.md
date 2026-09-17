@@ -64,7 +64,7 @@ usa, falla ruidosamente en vez de compilar una bibliografía obsoleta.
 ## Verificaciones — se corren antes de publicar, no se recuerdan
 
 ```powershell
-python -m pytest -q                              # 115 passed, 5 skipped
+python -m pytest -q                              # 123 passed, 5 skipped
 python scripts/refresh_paper_figures.py --check  # resúmenes vs CSV de resultados
 python scripts/import_tex.py --check             # LaTeX al día con el markdown
 python scripts/check_bib.py                      # refs.bib vs references.md

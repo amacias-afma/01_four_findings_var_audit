@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or data, please cite it as below."
-title: "Four Findings That Dissolved: A Pre-Registered Audit of a Value-at-Risk Study"
+title: "Stability Is Not Evidence: Shrinkage Artefacts in a Pre-Registered Neural Value-at-Risk Study"
 abstract: >-
   Code, frozen data, pre-registration record and execution ledger for a pre-registered
   Value-at-Risk study that produced four apparently well-supported findings and withdrew
