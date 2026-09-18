@@ -90,9 +90,11 @@ paper says so.
 
 **Paper:** *Stability Is Not Evidence: Shrinkage Artefacts in a Pre-Registered Neural
 Value-at-Risk Study* — `main.pdf`, built from `paper/draft-v1.md` (see `ESTADO.md` for the
-build rule). It supersedes the July 2026 SSRN preprint *Prior-Anchored Deep Learning VaR*, whose
-positive result did not survive this audit; a frozen copy of that preprint is kept in
-`paper/_ssrn_v1_prior_anchored/` as the record of the starting state.
+build rule). It supersedes the earlier SSRN preprint *Physics-Informed Deep Learning for Value-at-Risk:
+Beyond the Limitations of Naive LSTMs* (SSRN 6669538, April 2026), whose positive result did
+not survive this audit. A frozen copy of that paper's last draft (July 2026, by then retitled
+*Prior-Anchored Deep Learning VaR*) is kept in `paper/_ssrn_v1_prior_anchored/` as the record
+of the starting state.
 
 **Disclosure integers** (read from the ledger and the run manifests, never counted by hand):
 3,555 specifications evaluated; 1,959 test-set evaluations across 16 asset-level cells, four
