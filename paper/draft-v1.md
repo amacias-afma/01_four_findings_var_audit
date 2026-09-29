@@ -806,4 +806,4 @@ else in the repository.
 persisted (§3.5), so seed-level intervals cannot be recomputed from the archived outputs — only
 comparison-level ones. The pipeline now persists them; the archived results predate the fix.
 
-*Code and frozen data: `https://doi.org/10.5281/zenodo.22020014`.*
+*Code and frozen data: `https://doi.org/10.5281/zenodo.22020013`.*
