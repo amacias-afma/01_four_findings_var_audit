@@ -9,8 +9,8 @@ abstract: >-
   that detects it.
 type: software
 authors:
-  - family-names: "Macias Araya"
-    given-names: "Alvaro Felipe"
+  - family-names: "Macías Araya"
+    given-names: "Álvaro F."
     affiliation: "AFMA Quant AI Lab, AFMA Ingenieria SpA"
     email: amacias@afmaing.cl
     # orcid: "https://orcid.org/0000-0000-0000-0000"   # <- add yours before release

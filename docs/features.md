@@ -9,7 +9,7 @@ integer. Do not add a feature after seeing results.
 > the quant-articles repo, next to `hypotheses.md`. It is kept here so it lives beside the code
 > that implements it; copy it across so the pre-registration reference resolves.
 
-Frozen: 2026-08-16   Frozen by: Alvaro Macías   Implementation: `models/deep_var/features.py`
+Frozen: 2026-08-16   Frozen by: Álvaro F. Macías Araya   Implementation: `models/deep_var/features.py`
 
 ---
 
