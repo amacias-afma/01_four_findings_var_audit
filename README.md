@@ -89,7 +89,7 @@ nonsense. Every market result is validation-grade: the test block was scored fou
 paper says so.
 
 **Paper:** *Stability Is Not Evidence: Shrinkage Artefacts in a Pre-Registered Neural
-Value-at-Risk Study* — `main.pdf`, built from `paper/draft-v1.md` (see `ESTADO.md` for the
+Value-at-Risk Study* — `main.pdf`, built from `paper/draft-v1.md` (see `docs/repository-provenance.md` for the
 build rule). It supersedes the July 2026 SSRN preprint *Prior-Anchored Deep Learning VaR*, whose
 positive result did not survive this audit; a frozen copy of that preprint is kept in
 `paper/_ssrn_v1_prior_anchored/` as the record of the starting state.
