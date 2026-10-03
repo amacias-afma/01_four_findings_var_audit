@@ -622,9 +622,7 @@ is not even ours (§3.5). That trade was not a bad one.
 
 ---
 
-# Appendices
-
-The appendices carry the audit trail. Nothing in them is required to follow the argument; they
+**About the appendices.** The appendices carry the audit trail. Nothing in them is required to follow the argument; they
 exist so that a reader who wants to check a claim does not have to take our word for it, and so
 that the body of the paper can make the argument without narrating every correction along the
 way. **Appendix B and Appendix C each record errors we made and caught. They are placed here
