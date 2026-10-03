@@ -9,9 +9,9 @@ description = "Code and data manifests for a pre-registered audit of a Value-at-
 authors = [{ name = "Álvaro F. Macías Araya" }]
 requires-python = ">=3.10"
 dependencies = [
-    "numpy>=1.21.0",
-    "pandas>=1.3.0",
-    "scipy>=1.7.0",
+    "numpy==2.4.6",
+    "pandas==3.0.3",
+    "scipy==1.18.0",
 ]
 
 [project.optional-dependencies]
@@ -20,9 +20,9 @@ run = [
     "yfinance>=0.2.0",
     "torch>=2.0.0",
     "arch>=6.0.0",
-    "matplotlib>=3.5.0",
+    "matplotlib==3.11.0",
 ]
-dev = ["pytest>=7.0"]
+dev = ["pytest==9.1.1"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

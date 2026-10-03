@@ -72,6 +72,8 @@ pip install -e ".[run]"     # + torch / arch / yfinance, needed to actually run 
 python -m pytest -q         # 123 passed, 5 skipped (paths come from pyproject, no PYTHONPATH needed)
 ```
 
+Tested with Python 3.12.13.
+
 ## Evaluation protocol (`protocol.py`)
 
 - **Chronological TRAIN / VAL / TEST.** The anchor weight, rolling windows and architecture are
