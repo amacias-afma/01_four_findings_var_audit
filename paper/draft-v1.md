@@ -784,7 +784,12 @@ relevant literature is from 2010 and we did not read it until after the result.*
 
 Every number in this paper is read from a result file. None is typed by hand, and the
 correspondence is checked by a command that fails on drift. Inputs are frozen ten-year snapshots
-with sha256 manifests, verified on load. The five commands below reproduce the tests, the frozen
+with sha256 manifests, verified on load. The price files, downloaded from Yahoo Finance, are not
+redistributed because the vendor's terms do not permit it: the repository and its Zenodo archive
+carry the manifest (sha256, row counts, date ranges) and the download script, and a reader
+re-downloads the panel and verifies it against the manifest. Because the vendor can revise
+adjusted closes retroactively, a fresh download may fail the hash check; the frozen snapshots
+held by the author are the reference. The five commands below reproduce the tests, the frozen
 inputs, the two disclosure integers of §4, the consistency of the figures file with the result
 CSVs, and both figures.
 
