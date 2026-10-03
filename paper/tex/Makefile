@@ -18,7 +18,7 @@ REPO   = ../..
 NAMED  = four-findings-named
 ANON   = four-findings-anon
 
-.PHONY: named anon import check clean all verify
+.PHONY: named anon import check clean all verify supplement
 
 all: named
 
@@ -58,6 +58,31 @@ verify: named anon
 	@pdftotext $(NAMED).pdf - | grep -qi "afmaing.cl" \
 	  && echo "OK  named build carries author details" \
 	  || { echo "FAIL: named build is missing author details"; exit 1; }
+	@for s in zenodo.22020013 amacias-afma Macías Macias 0000-0003-0669-1503 AFMA; do \
+	  pdftotext $(ANON).pdf - | grep -qi -- "$$s" \
+	    && { echo "FAIL: anon build leaks '$$s'"; exit 1; } ; \
+	done; echo "OK  anon build carries none of the identifying strings"
+	@pdftotext $(ANON).pdf - | grep -q "Stability Is Not Evidence" \
+	  && echo "OK  anon build carries the current title" \
+	  || { echo "FAIL: anon build does not carry the current title"; exit 1; }
+
+# Anonymised supplementary archive for OpenReview. Built from HEAD (committed content only).
+# The grep gate FAILS rather than editing code or README to make it pass: each hit is a
+# decision for the author, not for the build.
+SUPP    = four-findings-supplement.zip
+SUPPTMP = supplement-check
+LEAKS   = Macías|Macias|Álvaro|Alvaro|amacias|afmaing|AFMA|0000-0003-0669-1503|zenodo.22020013|6669538|7317079
+supplement:
+	cd $(REPO) && rm -f paper/tex/$(SUPP) && git archive --format=zip -o paper/tex/$(SUPP) HEAD \
+	  -- . ':(exclude)CITATION.cff' ':(exclude).zenodo.json' ':(exclude)LICENSE' \
+	  ':(exclude)paper/_ssrn_v1_prior_anchored' ':(exclude)docs' ':(exclude)main.pdf' \
+	  ':(exclude)paper/tex/*.pdf' ':(exclude).git*'
+	rm -rf $(SUPPTMP) && mkdir $(SUPPTMP) && unzip -q $(SUPP) -d $(SUPPTMP)
+	@if grep -rIinE '$(LEAKS)' $(SUPPTMP); then \
+	  echo "FAIL: identifying strings in the supplementary archive (list above)"; rm -rf $(SUPPTMP); exit 1; \
+	else echo "OK  supplementary archive carries no identifying strings"; fi
+	@rm -rf $(SUPPTMP)
+	@echo "-> $(SUPP)"
 
 check:
 	cd $(REPO) && python scripts/import_tex.py --check
