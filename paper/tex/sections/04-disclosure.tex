@@ -1,17 +1,20 @@
 From the append-only ledger, not a hand count:
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}ll@{}}
-\toprule
-quantity & value\tabularnewline
-\midrule
+\toprule\noalign{}
+quantity & value \\
+\midrule\noalign{}
 \endhead
-specifications evaluated & \textbf{3,555} (lower bound)\tabularnewline
-test-set evaluations & \textbf{1,959}\tabularnewline
-asset--level cells & 16\tabularnewline
-maximum scoring passes on one cell & \textbf{4}\tabularnewline
-cells scored exactly once & \textbf{0}\tabularnewline
-\bottomrule
+\bottomrule\noalign{}
+\endlastfoot
+specifications evaluated & \textbf{3,555} (lower bound) \\
+test-set evaluations & \textbf{1,959} \\
+asset--level cells & 16 \\
+maximum scoring passes on one cell & \textbf{4} \\
+cells scored exactly once & \textbf{0} \\
 \end{longtable}
+}
 
 Design choices between passes --- weight grid, selection rule, architecture, asset subset --- were
 informed by the previous pass's outcomes. Per our own protocol the honest description is that

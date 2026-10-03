@@ -10,7 +10,7 @@ selected weight and the effect:
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{figures/figure1_dose_response.png}
+{\includegraphics[width=\linewidth]{figures/figure1_dose_response.png}}
 \caption{\textbf{The dose--response that convinced us, and it is an artefact.} Inter-seed IQR reduction (unanchored $\div$ anchored, log scale) against the anchor weight selected on validation, pooled across the four scoring passes; eight instruments, two quantile levels, ten-year frozen snapshots; $n = 85$ comparisons. Spearman $\rho = +0.585$, $p = 4.1 \times 10^{-9}$. The same relationship appears when the anchor is replaced by one carrying no information (\Cref{fig:control}), which is why the curve is not evidence that the prior is good.}
 \label{fig:dose}
 \end{figure}
@@ -28,19 +28,22 @@ the target is. The dose--response we took as corroboration is the signature of t
 deviation and marginal distribution; correlation with tomorrow's absolute return 0.0007 versus
 0.041. Matched on magnitude, stripped of information.
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}llll@{}}
-\toprule
-ticker & weight & real prior & shuffled prior\tabularnewline
-\midrule
+\toprule\noalign{}
+ticker & weight & real prior & shuffled prior \\
+\midrule\noalign{}
 \endhead
-NVDA & 0.5 & 1.55$\times$ & 1.49$\times$\tabularnewline
-NVDA & 1.0 & 2.25$\times$ & \textbf{2.91$\times$}\tabularnewline
-SQM & 0.5 & 0.76$\times$ & 0.63$\times$\tabularnewline
-SQM & 1.0 & 1.33$\times$ & 1.15$\times$\tabularnewline
-\^{}GSPC & 0.5 & 3.05$\times$ & \textbf{3.10$\times$}\tabularnewline
-\^{}GSPC & 1.0 & 12.47$\times$ & \textbf{16.76$\times$}\tabularnewline
-\bottomrule
+\bottomrule\noalign{}
+\endlastfoot
+NVDA & 0.5 & 1.55$\times$ & 1.49$\times$ \\
+NVDA & 1.0 & 2.25$\times$ & \textbf{2.91$\times$} \\
+SQM & 0.5 & 0.76$\times$ & 0.63$\times$ \\
+SQM & 1.0 & 1.33$\times$ & 1.15$\times$ \\
+\^{}GSPC & 0.5 & 3.05$\times$ & \textbf{3.10$\times$} \\
+\^{}GSPC & 1.0 & 12.47$\times$ & \textbf{16.76$\times$} \\
 \end{longtable}
+}
 
 The uninformative prior matches or beats the real one in 3 of 6 cells; \textbf{Wilcoxon \(p = 0.844\)}.
 Bootstrapped over comparisons, the two are indistinguishable: real prior \textbf{1.9x (95\% CI

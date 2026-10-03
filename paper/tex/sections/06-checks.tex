@@ -2,39 +2,29 @@ The primary evidence set is a post-hoc subset, which invites the obvious objecti
 selection criterion is mechanical (file timestamps) and result-independent, and it moves both
 headline numbers \emph{against} the hypothesis under test:
 
-\begin{longtable}[]{@{}llll@{}}
-\toprule
-\begin{minipage}[b]{0.22\columnwidth}\raggedright
-\strut
-\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
-full stage 1\strut
-\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
-first-touch subset\strut
-\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
-direction\strut
-\end{minipage}\tabularnewline
-\midrule
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+full stage 1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+first-touch subset
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+direction
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
-\begin{minipage}[t]{0.22\columnwidth}\raggedright
-selection error\strut
-\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-45\%\strut
-\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-\textbf{38\%}\strut
-\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-further from 50\% --- weakens ``selection is noise''\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.22\columnwidth}\raggedright
-seed-IQR reduction (median)\strut
-\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-16.1$\times$\strut
-\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-\textbf{13.5$\times$}\strut
-\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-smaller --- weakens ``the anchor stabilises''\strut
-\end{minipage}\tabularnewline
-\bottomrule
+\bottomrule\noalign{}
+\endlastfoot
+selection error & 45\% & \textbf{38\%} & further from 50\% --- weakens ``selection is noise'' \\
+seed-IQR reduction (median) & 16.1$\times$ & \textbf{13.5$\times$} & smaller --- weakens ``the anchor stabilises'' \\
 \end{longtable}
+}
 
 The table is reported so a reader can run the same check.
 

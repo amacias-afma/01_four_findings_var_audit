@@ -1,72 +1,30 @@
-\begin{longtable}[]{@{}lll@{}}
-\toprule
-\begin{minipage}[b]{0.30\columnwidth}\raggedright
-control\strut
-\end{minipage} & \begin{minipage}[b]{0.30\columnwidth}\raggedright
-what it caught\strut
-\end{minipage} & \begin{minipage}[b]{0.30\columnwidth}\raggedright
-cost\strut
-\end{minipage}\tabularnewline
-\midrule
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+control
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+what it caught
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+cost
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-Golden tests on scoring conventions\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-sign-convention and coverage bugs\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-minutes\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-Multi-seed protocol\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-single-seed results were noise\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-small\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-Diebold--Mariano + Holm\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-3 of 26 raw ``wins'' became 1\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-free\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-Model Confidence Set\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-ladder inseparable at this n\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-free\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-Test-touch ledger\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-1,959 evaluations, 4 passes, 60 uncounted\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-trivial\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-\textbf{Power analysis}\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-headline null had 9.5\% power\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-\textbf{free}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-\textbf{Nonsense-prior control}\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-strongest finding was arithmetic\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-\textbf{28 min}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-\textbf{Citation verification}\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-5 of 20 references wrong, one backwards\strut
-\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
-hours\strut
-\end{minipage}\tabularnewline
-\bottomrule
+\bottomrule\noalign{}
+\endlastfoot
+Golden tests on scoring conventions & sign-convention and coverage bugs & minutes \\
+Multi-seed protocol & single-seed results were noise & small \\
+Diebold--Mariano + Holm & 3 of 26 raw ``wins'' became 1 & free \\
+Model Confidence Set & ladder inseparable at this n & free \\
+Test-touch ledger & 1,959 evaluations, 4 passes, 60 uncounted & trivial \\
+\textbf{Power analysis} & headline null had 9.5\% power & \textbf{free} \\
+\textbf{Nonsense-prior control} & strongest finding was arithmetic & \textbf{28 min} \\
+\textbf{Citation verification} & 5 of 20 references wrong, one backwards & hours \\
 \end{longtable}
+}
 
 The two controls that destroyed the two surviving findings are also the two cheapest. Neither
 appears in any of the five machine-learning VaR papers surveyed in \Cref{sec:intro} --- including the one that

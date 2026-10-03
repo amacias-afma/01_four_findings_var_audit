@@ -13,7 +13,8 @@ Three anchors \(a\): the \textbf{true} optimum; a \textbf{scale-matched nonsense
 pointing elsewhere; and zero.
 
 \textbf{Analytically.} The penalty's gradient is \(2w(\theta - a)\). Writing \(\theta_t\) and
-\(\theta'_t\) for two runs that differ only in initialisation, and \(\Delta_t = \theta_t - \theta'_t\) for their separation, one gradient step gives
+\(\theta'_t\) for two runs that differ only in initialisation, and \(\Delta_t = \theta_t -
+\theta'_t\) for their separation, one gradient step gives
 
 \[\Delta_{t+1} \;=\; \underbrace{(1 - 2\eta w)\,\Delta_t}_{\text{penalty}} \;-\; \underbrace{\eta\left[g(\theta_t) - g(\theta'_t)\right]}_{\text{data term}},\]
 
@@ -42,32 +43,25 @@ checking that the remainder was negligible --- the practice this paper exists to
 own central derivation. Tracking the true separation trajectory
 \(\lVert \Delta_t \rVert\) against the formula (\texttt{scripts/measure\_contraction.py}) gives:
 
-\begin{longtable}[]{@{}ll@{}}
-\toprule
-\begin{minipage}[b]{0.47\columnwidth}\raggedright
-quantity\strut
-\end{minipage} & \begin{minipage}[b]{0.47\columnwidth}\raggedright
-result\strut
-\end{minipage}\tabularnewline
-\midrule
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+quantity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+result
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
-contraction from the dropped term alone, at \(w = 0\)\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-\(14\times\) --- the formula predicts none\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
-absolute prediction, observed \(/\) predicted\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-median \(0.070\) --- low by \(\approx 14\times\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
-\textbf{prediction of contraction relative to \(w = 0\)}\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-median \(1.05\), range \([0.80,\, 1.11]\)\strut
-\end{minipage}\tabularnewline
-\bottomrule
+\bottomrule\noalign{}
+\endlastfoot
+contraction from the dropped term alone, at \(w = 0\) & \(14\times\) --- the formula predicts none \\
+absolute prediction, observed \(/\) predicted & median \(0.070\) --- low by \(\approx 14\times\) \\
+\textbf{prediction of contraction relative to \(w = 0\)} & median \(1.05\), range \([0.80,\, 1.11]\) \\
 \end{longtable}
+}
 
 \textbf{The raw formula is a poor predictor of absolute spread and a good predictor of the quantity
 this paper actually reports.} The reason is visible in the derivation. Writing \(S(w)\) for the
@@ -93,23 +87,26 @@ contracts the parameter separation slightly less.
 \textbf{Numerically}, over a ten-point log-spaced weight grid with 40 seeds per cell
 (pure numpy, 22 seconds):
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}llll@{}}
-\toprule
-weight & truth & nonsense & nonsense $\div$ truth\tabularnewline
-\midrule
+\toprule\noalign{}
+weight & truth & nonsense & nonsense $\div$ truth \\
+\midrule\noalign{}
 \endhead
-0.0005 & 1.05$\times$ & 1.09$\times$ & 1.03\tabularnewline
-0.0009 & 1.10$\times$ & 1.12$\times$ & 1.02\tabularnewline
-0.0016 & 1.13$\times$ & 1.17$\times$ & 1.04\tabularnewline
-0.0029 & 1.17$\times$ & 1.23$\times$ & 1.05\tabularnewline
-0.0053 & 1.26$\times$ & 1.28$\times$ & 1.02\tabularnewline
-0.0095 & 1.31$\times$ & 1.21$\times$ & \textbf{0.93}\tabularnewline
-0.0171 & 1.51$\times$ & 1.67$\times$ & 1.11\tabularnewline
-0.0308 & 2.39$\times$ & 6.09$\times$ & 2.55\tabularnewline
-0.0555 & 5.46$\times$ & 17.81$\times$ & 3.26\tabularnewline
-0.1000 & 50.40$\times$ & 79.23$\times$ & 1.57\tabularnewline
-\bottomrule
+\bottomrule\noalign{}
+\endlastfoot
+0.0005 & 1.05$\times$ & 1.09$\times$ & 1.03 \\
+0.0009 & 1.10$\times$ & 1.12$\times$ & 1.02 \\
+0.0016 & 1.13$\times$ & 1.17$\times$ & 1.04 \\
+0.0029 & 1.17$\times$ & 1.23$\times$ & 1.05 \\
+0.0053 & 1.26$\times$ & 1.28$\times$ & 1.02 \\
+0.0095 & 1.31$\times$ & 1.21$\times$ & \textbf{0.93} \\
+0.0171 & 1.51$\times$ & 1.67$\times$ & 1.11 \\
+0.0308 & 2.39$\times$ & 6.09$\times$ & 2.55 \\
+0.0555 & 5.46$\times$ & 17.81$\times$ & 3.26 \\
+0.1000 & 50.40$\times$ & 79.23$\times$ & 1.57 \\
 \end{longtable}
+}
 
 \textbf{Paired at each weight}, the uninformative anchor stabilises \textbf{at least as much as the true
 optimum at 9 of 10 weights}, with a median relative ratio of \textbf{1.04 (95\% CI 1.0--1.8)}. An
@@ -126,7 +123,7 @@ axes, and only the second is evidence.}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{figures/figure2_control.png}
+{\includegraphics[width=\linewidth]{figures/figure2_control.png}}
 \caption{\textbf{The same effect, with a matched control.} (a) Empirical, three assets at $\alpha = 0.05$: replacing the anchor with a scale-matched permutation of itself leaves the stabilisation intact --- the permuted anchor stabilises at least as much as the real one in 3 of 6 comparisons (Wilcoxon $p = 0.84$). (b) Synthetic, ground truth known: inter-seed IQR reduction against penalty weight $w$ over a ten-point log-spaced grid and 40 seeds, for the true optimum and a scale-matched nonsense anchor; $n = 30$ non-zero-weight cells. The contraction tracks the penalty, not the target.}
 \label{fig:control}
 \end{figure}

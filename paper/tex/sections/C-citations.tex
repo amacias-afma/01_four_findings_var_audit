@@ -1,42 +1,27 @@
 Twenty citations were stated from standing knowledge --- author, year, venue --- pending
 verification against the published record. Checking all twenty found \textbf{five errors}:
 
-\begin{longtable}[]{@{}ll@{}}
-\toprule
-\begin{minipage}[b]{0.47\columnwidth}\raggedright
-citation\strut
-\end{minipage} & \begin{minipage}[b]{0.47\columnwidth}\raggedright
-the error\strut
-\end{minipage}\tabularnewline
-\midrule
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+citation
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+the error
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
-\citet{fisher1935design}\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-given as ``ch.~21''; the randomization test is \textbf{\S21 within Chapter III}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
-Gelman \& Loken\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-cited as a 2013 working paper; published as \textbf{2014, \emph{American Scientist} 102(6)}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
-\citet{madani2004covalidation}\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-wrong authors --- and \textbf{the claim about it was backwards}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
-\citet{taylor2019forecasting}\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-described as a quantile-loss neural network; it is \textbf{semiparametric asymmetric-Laplace}\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
-Lin et al.\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-dated 2023; published \textbf{2024}, \emph{Scientometrics} 129(4)\strut
-\end{minipage}\tabularnewline
-\bottomrule
+\bottomrule\noalign{}
+\endlastfoot
+\citet{fisher1935design} & given as ``ch.~21''; the randomization test is \textbf{\S21 within Chapter III} \\
+Gelman \& Loken & cited as a 2013 working paper; published as \textbf{2014, \emph{American Scientist} 102(6)} \\
+\citet{madani2004covalidation} & wrong authors --- and \textbf{the claim about it was backwards} \\
+\citet{taylor2019forecasting} & described as a quantile-loss neural network; it is \textbf{semiparametric asymmetric-Laplace} \\
+Lin et al. & dated 2023; published \textbf{2024}, \emph{Scientometrics} 129(4) \\
 \end{longtable}
+}
 
 \textbf{Four of the five were inherited from other people's descriptions of a source, or from a
 metadata string, rather than from the source itself.} A citation copied from a citation is not
