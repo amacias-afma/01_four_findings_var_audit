@@ -211,7 +211,7 @@ def to_latex(md: str) -> str:
     p = subprocess.run(
         ["pandoc", "--from=markdown+pipe_tables+raw_tex", "--to=latex",
          "--wrap=preserve", "--no-highlight"],
-        input=md, capture_output=True, text=True, check=True)
+        input=md, capture_output=True, text=True, encoding="utf-8", check=True)
     tex = p.stdout
 
     # pandoc ALREADY emits a figure float for a lone image. Do not wrap it again: nesting
@@ -288,7 +288,7 @@ def main() -> int:
         if new != old:
             stale.append(name)
             if not args.check:
-                with open(path, "w", encoding="utf-8") as f:
+                with open(path, "w", encoding="utf-8", newline="\n") as f:
                     f.write(tex)
         print(f"  {'stale' if new != old else 'ok   '}  {name}")
 
