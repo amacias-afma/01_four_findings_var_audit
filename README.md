@@ -90,9 +90,11 @@ paper says so.
 
 **Paper:** *Stability Is Not Evidence: Shrinkage Artefacts in a Pre-Registered Neural
 Value-at-Risk Study* — `main.pdf`, built from `paper/draft-v1.md` (see `docs/repository-provenance.md` for the
-build rule). It supersedes the July 2026 SSRN preprint *Prior-Anchored Deep Learning VaR*, whose
-positive result did not survive this audit; a frozen copy of that preprint is kept in
-`paper/_ssrn_v1_prior_anchored/` as the record of the starting state.
+build rule). It supersedes the earlier SSRN preprint *Physics-Informed Deep Learning for Value-at-Risk:
+Beyond the Limitations of Naive LSTMs* (SSRN 6669538, April 2026), whose positive result did
+not survive this audit. A frozen copy of that paper's last draft (July 2026, by then retitled
+*Prior-Anchored Deep Learning VaR*) is kept in `paper/_ssrn_v1_prior_anchored/` as the record
+of the starting state.
 
 **Disclosure integers** (read from the ledger and the run manifests, never counted by hand):
 3,555 specifications evaluated; 1,959 test-set evaluations across 16 asset-level cells, four
@@ -138,8 +140,15 @@ _archive/                    superseded pipeline + stale results (see _archive/R
 
 The first run downloads each ticker once and writes `data/snapshots/<TICKER>@<END>.csv` plus a
 `manifest.json` recording its sha256, row count and date range. Every later run loads that file
-and **verifies the hash**, so a rerun cannot silently train on different data. Commit the
-snapshots and the manifest.
+and **verifies the hash**, so a rerun cannot silently train on different data.
+
+The price CSVs are **not distributed** with this repository or its Zenodo archive: they were
+downloaded from Yahoo Finance, whose terms do not permit redistribution. Only
+`data/snapshots/manifest.json` is committed. To reproduce, run
+`python -m value_at_risk.data.snapshot` to re-download the panel, then `--verify` to compare
+it against the manifest. Yahoo Finance can revise adjusted closes retroactively, so a fresh
+download may legitimately fail the hash check; a mismatch means the vendor's history has
+changed, not that the code has.
 
 ```bash
 python -m value_at_risk.data.snapshot                    # freeze the panel
