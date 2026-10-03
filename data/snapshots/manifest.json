@@ -1,0 +1,90 @@
+{
+  "BTC-USD@2026-06-30": {
+    "end_date": "2026-06-30",
+    "filename": "BTC-USD@2026-06-30.csv",
+    "first_date": "2016-06-30",
+    "last_date": "2026-06-29",
+    "retrieved_at_utc": "2026-08-16T17:13:54+00:00",
+    "rows": 3652,
+    "sha256": "9848381e724557bcd312a4681a37c5e6c039728a53843dc9ee152f07b2d732fa",
+    "source": "yfinance",
+    "ticker": "BTC-USD"
+  },
+  "CL=F@2026-06-30": {
+    "end_date": "2026-06-30",
+    "filename": "CL_F@2026-06-30.csv",
+    "first_date": "2016-06-30",
+    "last_date": "2026-06-29",
+    "retrieved_at_utc": "2026-08-16T17:13:58+00:00",
+    "rows": 2512,
+    "sha256": "47e57c54edfa0648e1a656cd28124d25d2f647bcde1de3d23b35be01f155a383",
+    "source": "yfinance",
+    "ticker": "CL=F"
+  },
+  "CLP=X@2026-06-30": {
+    "end_date": "2026-06-30",
+    "filename": "CLP_X@2026-06-30.csv",
+    "first_date": "2016-06-30",
+    "last_date": "2026-06-29",
+    "retrieved_at_utc": "2026-08-16T17:13:57+00:00",
+    "rows": 2600,
+    "sha256": "0a76ed547d895636baf084749563fc3f9c919685eccc37ec4af9f004da2607c5",
+    "source": "yfinance",
+    "ticker": "CLP=X"
+  },
+  "HG=F@2026-06-30": {
+    "end_date": "2026-06-30",
+    "filename": "HG_F@2026-06-30.csv",
+    "first_date": "2016-06-30",
+    "last_date": "2026-06-29",
+    "retrieved_at_utc": "2026-08-16T17:13:58+00:00",
+    "rows": 2512,
+    "sha256": "3e3de2e6efcd515e3d3d3c170c7aa59dc960eacc4a1905401964379de5d93f3f",
+    "source": "yfinance",
+    "ticker": "HG=F"
+  },
+  "NVDA@2026-06-30": {
+    "end_date": "2026-06-30",
+    "filename": "NVDA@2026-06-30.csv",
+    "first_date": "2016-06-30",
+    "last_date": "2026-06-29",
+    "retrieved_at_utc": "2026-08-16T17:13:55+00:00",
+    "rows": 2512,
+    "sha256": "7a75c476aed39c00209b84cbf8f7d0271eb31e5cc7817f2228668c4f8ceb24f1",
+    "source": "yfinance",
+    "ticker": "NVDA"
+  },
+  "SQM@2026-06-30": {
+    "end_date": "2026-06-30",
+    "filename": "SQM@2026-06-30.csv",
+    "first_date": "2016-06-30",
+    "last_date": "2026-06-29",
+    "retrieved_at_utc": "2026-08-16T17:13:56+00:00",
+    "rows": 2512,
+    "sha256": "528b1fdedd202ba39686ff58cb7bfe40885c95ad5f2cb53733382db17f0482e2",
+    "source": "yfinance",
+    "ticker": "SQM"
+  },
+  "TSLA@2026-06-30": {
+    "end_date": "2026-06-30",
+    "filename": "TSLA@2026-06-30.csv",
+    "first_date": "2016-06-30",
+    "last_date": "2026-06-29",
+    "retrieved_at_utc": "2026-08-16T17:13:54+00:00",
+    "rows": 2512,
+    "sha256": "7a74af61348f8a41202ca6d2523a49d8406eba47aaedf7db43749976284dc54d",
+    "source": "yfinance",
+    "ticker": "TSLA"
+  },
+  "^GSPC@2026-06-30": {
+    "end_date": "2026-06-30",
+    "filename": "GSPC@2026-06-30.csv",
+    "first_date": "2016-06-30",
+    "last_date": "2026-06-29",
+    "retrieved_at_utc": "2026-08-16T17:13:53+00:00",
+    "rows": 2512,
+    "sha256": "e724e7ed92eea6cf26b5ad22e88f163afefb1e09e8309c992ff2fc30c810345b",
+    "source": "yfinance",
+    "ticker": "^GSPC"
+  }
+}
