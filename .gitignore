@@ -80,11 +80,15 @@ venv.bak/
 Thumbs.db
 
 # Project specific
-data/
-# ...but the frozen price snapshots MUST be committed: they are what makes every
-# reported number reproducible. Do not remove these negations.
-!data/snapshots/
-!data/snapshots/**
+# Anchored to the repo root: an unanchored `data/` also matched the source package
+# src/value_at_risk/data/, which therefore never reached git.
+/data/*
+!/data/snapshots/
+# Price files come from Yahoo Finance, whose terms do not permit redistribution, so the
+# CSVs stay local. The manifest (sha256, row counts, date ranges) MUST be committed:
+# it is what lets a reader verify a re-download. Do not remove this negation.
+/data/snapshots/*
+!/data/snapshots/manifest.json
 *.log
 
 # Superseded pipeline + stale results, kept for reference only
