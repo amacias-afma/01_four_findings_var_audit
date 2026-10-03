@@ -132,7 +132,7 @@ src/value_at_risk/
     report.py                ranked ladder table (pinball · DM · MCS · gate)
 run_experiment.py            one ticker × one α  → results CSV + meta.json
 run_batch_anchored.py        panel × α levels    → anchored_batch_summary.{csv,md}
-tests/                       120 tests; torch needed only for the training layer
+tests/                       128 tests; torch needed only for the training layer
 _archive/                    superseded pipeline + stale results (see _archive/README.md)
 ```
 
