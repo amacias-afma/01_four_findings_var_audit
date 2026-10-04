@@ -812,7 +812,7 @@ comparison-level ones. The pipeline now persists them; the archived results pred
 **Disclosure.** *Specifications evaluated and test-set evaluations:* reported in §4, read from
 the run manifests and the append-only ledger. *Data:* daily prices from Yahoo Finance; not
 redistributed under the vendor's terms; sha256 manifest and download script provided.
-*Compute:* a single laptop (Intel Core i7-12700H, 16 GB RAM, no discrete GPU). *Funding and
+*Compute:* a single laptop (Intel Core i7-12700H, 16 GB RAM, no discrete GPU); total runtime was not recorded. *Funding and
 conflicts:* \fundingstatement{} *Disclaimer:* This is
 research, not investment advice. Past performance does not indicate future results. No claim is
 made about live tradability or capacity.
