@@ -66,23 +66,12 @@ verify: named anon
 	  && echo "OK  anon build carries the current title" \
 	  || { echo "FAIL: anon build does not carry the current title"; exit 1; }
 
-# Anonymised supplementary archive for OpenReview. Built from HEAD (committed content only).
-# The grep gate FAILS rather than editing code or README to make it pass: each hit is a
-# decision for the author, not for the build.
-SUPP    = four-findings-supplement.zip
-SUPPTMP = supplement-check
-LEAKS   = Macías|Macias|Álvaro|Alvaro|amacias|afmaing|AFMA|0000-0003-0669-1503|zenodo.22020013|6669538|7317079
+# Anonymised supplementary archive for OpenReview. HEAD is exported to a temporary copy; only
+# the copy is transformed (see scripts/build_supplement.py). The target FAILS, listing every
+# hit, if anything identifying survives; the repository itself is never edited to pass.
+SUPP = four-findings-supplement.zip
 supplement:
-	cd $(REPO) && rm -f paper/tex/$(SUPP) && git archive --format=zip -o paper/tex/$(SUPP) HEAD \
-	  -- . ':(exclude)CITATION.cff' ':(exclude).zenodo.json' ':(exclude)LICENSE' \
-	  ':(exclude)paper/_ssrn_v1_prior_anchored' ':(exclude)docs' ':(exclude)main.pdf' \
-	  ':(exclude)paper/tex/*.pdf' ':(exclude).git*'
-	rm -rf $(SUPPTMP) && mkdir $(SUPPTMP) && unzip -q $(SUPP) -d $(SUPPTMP)
-	@if grep -rIinE '$(LEAKS)' $(SUPPTMP); then \
-	  echo "FAIL: identifying strings in the supplementary archive (list above)"; rm -rf $(SUPPTMP); exit 1; \
-	else echo "OK  supplementary archive carries no identifying strings"; fi
-	@rm -rf $(SUPPTMP)
-	@echo "-> $(SUPP)"
+	cd $(REPO) && python scripts/build_supplement.py paper/tex/$(SUPP)
 
 check:
 	cd $(REPO) && python scripts/import_tex.py --check
