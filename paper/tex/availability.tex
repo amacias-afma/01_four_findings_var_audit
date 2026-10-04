@@ -1,0 +1,22 @@
+% Code-availability line, shared by both build roots. Anonymised for double-blind review.
+\newcommand{\codeavailability}{%
+  \ifanonymous
+    \emph{Code and data.} The code, the frozen-input manifests and the test-touch ledger are
+    provided to reviewers as an anonymised supplementary archive. The public archive is
+    withheld during review to preserve anonymity.%
+  \else
+    \emph{Code and data.} \url{https://doi.org/10.5281/zenodo.22020013} (concept DOI) and
+    \url{https://github.com/amacias-afma/01_four_findings_var_audit}, release v2.1.0.%
+  \fi}
+
+\newcommand{\fundingstatement}{%
+  \ifanonymous
+    The author owns the company that funded this work, together with the author's personal
+    funds; it received no external funding. The author declares no other competing interests.%
+  \else
+    The author is the owner and director of AFMA Ingenier{\'\i}a SpA, which funded this work
+    together with the author's personal funds; it received no external funding. The author
+    declares no other competing interests.%
+  \fi}
+
+\newcommand{\archivephrase}{\ifanonymous the supplementary archive\else the repository and its Zenodo archive\fi}

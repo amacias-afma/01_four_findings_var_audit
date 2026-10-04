@@ -1,4 +1,4 @@
-% Four Findings That Dissolved — LaTeX build.
+% Stability Is Not Evidence — LaTeX build.
 %
 % Structure only at this stage: every section exists, every float exists, every citation
 % key resolves, and the document compiles. Prose is imported from paper/draft-v1.md
@@ -9,15 +9,16 @@
 
 \documentclass[11pt]{article}
 \input{preamble}
+\input{availability}
 
-\title{Four Findings That Dissolved:\\A Pre-Registered Audit of a Value-at-Risk Study}
+\title{Stability Is Not Evidence:\\Shrinkage Artefacts in a Pre-Registered\\Neural Value-at-Risk Study}
 
 \ifanonymous
   \author{Anonymous authors\\Paper under double-blind review}
 \else
   \author{%
     Álvaro F. Macías Araya\\
-    AFMA\\
+    AFMA Ingenier{\'\i}a SpA\\
     \texttt{amacias@afmaing.cl}
   }
 \fi
@@ -69,7 +70,7 @@
 \section{Checks on this study's own analysis}\label{sec:checks}
 \input{sections/06-checks}
 
-\section{The taxonomy}\label{sec:taxonomy}
+\section{Controls, what they caught, and what they cost}\label{sec:taxonomy}
 \input{sections/07-taxonomy}
 
 \section{Limitations}\label{sec:limitations}

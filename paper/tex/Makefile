@@ -18,7 +18,7 @@ REPO   = ../..
 NAMED  = four-findings-named
 ANON   = four-findings-anon
 
-.PHONY: named anon import check clean all verify
+.PHONY: named anon import check clean all verify supplement
 
 all: named
 
@@ -58,6 +58,20 @@ verify: named anon
 	@pdftotext $(NAMED).pdf - | grep -qi "afmaing.cl" \
 	  && echo "OK  named build carries author details" \
 	  || { echo "FAIL: named build is missing author details"; exit 1; }
+	@for s in zenodo.22020013 amacias-afma Macías Macias 0000-0003-0669-1503 AFMA; do \
+	  pdftotext $(ANON).pdf - | grep -qi -- "$$s" \
+	    && { echo "FAIL: anon build leaks '$$s'"; exit 1; } ; \
+	done; echo "OK  anon build carries none of the identifying strings"
+	@pdftotext $(ANON).pdf - | grep -q "Stability Is Not Evidence" \
+	  && echo "OK  anon build carries the current title" \
+	  || { echo "FAIL: anon build does not carry the current title"; exit 1; }
+
+# Anonymised supplementary archive for OpenReview. HEAD is exported to a temporary copy; only
+# the copy is transformed (see scripts/build_supplement.py). The target FAILS, listing every
+# hit, if anything identifying survives; the repository itself is never edited to pass.
+SUPP = four-findings-supplement.zip
+supplement:
+	cd $(REPO) && python scripts/build_supplement.py paper/tex/$(SUPP)
 
 check:
 	cd $(REPO) && python scripts/import_tex.py --check

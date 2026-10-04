@@ -25,6 +25,9 @@
 \providecommand{\pandocbounded}[1]{#1}
 \newlength{\cslhangindent}
 \providecommand{\real}[1]{#1}
+% pandoc 3.x wraps caption-less tables in {\def\LTcaptype{none} ...}; define the counter
+% it references. Same fix as the root main.tex — see the comment there for the diagnosis.
+\newcounter{none}
 \usepackage{caption}
 \usepackage{xcolor}
 \usepackage{enumitem}

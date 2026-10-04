@@ -622,9 +622,7 @@ is not even ours (§3.5). That trade was not a bad one.
 
 ---
 
-# Appendices
-
-The appendices carry the audit trail. Nothing in them is required to follow the argument; they
+**About the appendices.** The appendices carry the audit trail. Nothing in them is required to follow the argument; they
 exist so that a reader who wants to check a claim does not have to take our word for it, and so
 that the body of the paper can make the argument without narrating every correction along the
 way. **Appendix B and Appendix C each record errors we made and caught. They are placed here
@@ -785,7 +783,7 @@ relevant literature is from 2010 and we did not read it until after the result.*
 Every number in this paper is read from a result file. None is typed by hand, and the
 correspondence is checked by a command that fails on drift. Inputs are frozen ten-year snapshots
 with sha256 manifests, verified on load. The price files, downloaded from Yahoo Finance, are not
-redistributed because the vendor's terms do not permit it: the repository and its Zenodo archive
+redistributed because the vendor's terms do not permit it: \archivephrase{}
 carry the manifest (sha256, row counts, date ranges) and the download script, and a reader
 re-downloads the panel and verifies it against the manifest. Because the vendor can revise
 adjusted closes retroactively, a fresh download may fail the hash check; the frozen snapshots
@@ -795,7 +793,7 @@ CSVs, and both figures.
 
 ```bash
 pip install -e ".[run]"
-python -m pytest -q                                  # 123 passed, 5 skipped
+python -m pytest -q                                  # all tests pass, 0 skipped
 python -m value_at_risk.data.snapshot --verify       # frozen inputs, sha256
 python -m value_at_risk.evaluation.ledger --summary  # the disclosure integers
 python scripts/refresh_paper_figures.py --check      # figures file vs result files
@@ -809,6 +807,14 @@ else in the repository.
 
 **What cannot be reproduced.** The per-seed losses of the original stage-1 runs were not
 persisted (§3.5), so seed-level intervals cannot be recomputed from the archived outputs — only
-comparison-level ones. The pipeline now persists them; the archived results predate the fix.
+comparison-level ones. The pipeline now persists them; the archived results predate the fix. The library versions used for the original market runs were not recorded, and that environment no longer exists. The pinned versions are those under which the test suite and the synthetic demonstration of §3.5 reproduce; market-study numbers rerun under them may differ in the last reported digit.
 
-*Code and frozen data: `https://doi.org/10.5281/zenodo.22020013`.*
+**Disclosure.** *Specifications evaluated and test-set evaluations:* reported in §4, read from
+the run manifests and the append-only ledger. *Data:* daily prices from Yahoo Finance; not
+redistributed under the vendor's terms; sha256 manifest and download script provided.
+*Compute:* a single laptop (Intel Core i7-12700H, 16 GB RAM, no discrete GPU); total runtime was not recorded. *Funding and
+conflicts:* \fundingstatement{} *Disclaimer:* This is
+research, not investment advice. Past performance does not indicate future results. No claim is
+made about live tradability or capacity.
+
+\codeavailability{}

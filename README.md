@@ -69,8 +69,11 @@ Reported in full — the ablation row is the most informative one.
 cd 01_four_findings_var_audit
 pip install -e .            # required: src/ layout, makes `value_at_risk` importable
 pip install -e ".[run]"     # + torch / arch / yfinance, needed to actually run the study
-python -m pytest -q         # 123 passed, 5 skipped (paths come from pyproject, no PYTHONPATH needed)
+python -m pytest -q         # all tests pass, 0 skipped (paths come from pyproject, no PYTHONPATH needed)
 ```
+
+Tested with Python 3.11.15 and pandoc 3.12. Library versions of the original 2026 market runs
+were not recorded; see the paper's reproducibility statement.
 
 ## Evaluation protocol (`protocol.py`)
 
@@ -103,7 +106,7 @@ scoring passes, zero cells scored once.
 **Checks that must pass before anything is published:**
 
 ```bash
-python -m pytest -q                                   # 123 passed, 5 skipped
+python -m pytest -q                                   # all tests pass, 0 skipped
 python scripts/refresh_paper_figures.py --check       # summaries vs result CSVs
 python scripts/import_tex.py --check                  # LaTeX current with the markdown
 python scripts/check_bib.py                           # refs.bib vs references.md
