@@ -197,6 +197,32 @@ def require_pandoc() -> None:
             "  brew install pandoc                     # macOS\n\n"
             "Then re-run:  python scripts/import_tex.py\n"
         )
+    detected = _pandoc_version()
+    registered = _registered_pandoc_version()
+    print(f"pandoc {detected}")
+    if registered is None:
+        print("  [warn] README.md records no pandoc version ('Tested with ... pandoc X.Y.Z').")
+    elif detected != registered:
+        print(f"  [warn] the sections were generated with pandoc {registered}; this is "
+              f"{detected}. Output formatting differs between versions, so --check may "
+              f"report fragments as stale that have not really changed.")
+
+
+def _pandoc_version() -> str:
+    out = subprocess.run(["pandoc", "--version"], capture_output=True, text=True,
+                         encoding="utf-8").stdout
+    m = re.search(r"pandoc(?:\.exe)?\s+(\d+(?:\.\d+)+)", out)
+    return m.group(1) if m else "unknown"
+
+
+def _registered_pandoc_version() -> "str | None":
+    """The pandoc version the README says the sections were generated and tested with."""
+    try:
+        text = open("README.md", encoding="utf-8").read()
+    except OSError:
+        return None
+    m = re.search(r"Tested with Python [\d.]+ and pandoc (\d+(?:\.\d+)+)", text)
+    return m.group(1) if m else None
 
 
 def apply_citations(md: str) -> str:
