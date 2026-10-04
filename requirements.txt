@@ -1,13 +1,10 @@
-# Versions are those of the environment in which `python -m pytest -q` gives
-# 123 passed, 5 skipped (Python 3.12.13). The skips are the torch-gated tests.
+# Pinned to the environment in which the full test suite passes (Python 3.11.15).
+# The library versions used for the original 2026 market runs were not recorded.
 numpy==2.4.6
-pandas==3.0.3
-scipy==1.18.0
-matplotlib==3.11.0
+pandas==3.0.6
+scipy==1.17.1
+yfinance==1.7.0
+torch==2.14.0
+arch==8.0.0
+matplotlib==3.11.2
 pytest==9.1.1
-
-# Needed only to run the study end to end (not installed in the environment above).
-# TODO: pin to the versions used for the archived runs.
-yfinance>=0.2.0
-torch>=2.0.0
-arch>=6.0.0

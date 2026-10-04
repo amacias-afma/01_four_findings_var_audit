@@ -10,17 +10,17 @@ authors = [{ name = "Álvaro F. Macías Araya" }]
 requires-python = ">=3.10"
 dependencies = [
     "numpy==2.4.6",
-    "pandas==3.0.3",
-    "scipy==1.18.0",
+    "pandas==3.0.6",
+    "scipy==1.17.1",
 ]
 
 [project.optional-dependencies]
 # Everything needed to actually run the study end to end.
 run = [
-    "yfinance>=0.2.0",
-    "torch>=2.0.0",
-    "arch>=6.0.0",
-    "matplotlib==3.11.0",
+    "yfinance==1.7.0",
+    "torch==2.14.0",
+    "arch==8.0.0",
+    "matplotlib==3.11.2",
 ]
 dev = ["pytest==9.1.1"]
 

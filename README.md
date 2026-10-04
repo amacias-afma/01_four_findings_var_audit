@@ -72,7 +72,8 @@ pip install -e ".[run]"     # + torch / arch / yfinance, needed to actually run 
 python -m pytest -q         # 123 passed, 5 skipped (paths come from pyproject, no PYTHONPATH needed)
 ```
 
-Tested with Python 3.12.13.
+Tested with Python 3.11.15 and pandoc 3.12. Library versions of the original 2026 market runs
+were not recorded; see the paper's reproducibility statement.
 
 ## Evaluation protocol (`protocol.py`)
 

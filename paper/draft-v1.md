@@ -807,7 +807,7 @@ else in the repository.
 
 **What cannot be reproduced.** The per-seed losses of the original stage-1 runs were not
 persisted (§3.5), so seed-level intervals cannot be recomputed from the archived outputs — only
-comparison-level ones. The pipeline now persists them; the archived results predate the fix.
+comparison-level ones. The pipeline now persists them; the archived results predate the fix. The library versions used for the original market runs were not recorded, and that environment no longer exists. The pinned versions are those under which the test suite and the synthetic demonstration of §3.5 reproduce; market-study numbers rerun under them may differ in the last reported digit.
 
 **Disclosure.** *Specifications evaluated and test-set evaluations:* reported in §4, read from
 the run manifests and the append-only ledger. *Data:* daily prices from Yahoo Finance; not
