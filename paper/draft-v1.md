@@ -813,8 +813,7 @@ comparison-level ones. The pipeline now persists them; the archived results pred
 the run manifests and the append-only ledger. *Data:* daily prices from Yahoo Finance; not
 redistributed under the vendor's terms; sha256 manifest and download script provided.
 *Compute:* a single laptop (Intel Core i7-12700H, 16 GB RAM, no discrete GPU). *Funding and
-conflicts:* this work was funded by \ifanonymous the author's company\else AFMA Ingeniería SpA\fi{} and the author's personal funds; it
-received no external funding. The author declares no competing interests. *Disclaimer:* This is
+conflicts:* \fundingstatement{} *Disclaimer:* This is
 research, not investment advice. Past performance does not indicate future results. No claim is
 made about live tradability or capacity.
 
