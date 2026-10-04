@@ -793,7 +793,7 @@ CSVs, and both figures.
 
 ```bash
 pip install -e ".[run]"
-python -m pytest -q                                  # 123 passed, 5 skipped
+python -m pytest -q                                  # all tests pass, 0 skipped
 python -m value_at_risk.data.snapshot --verify       # frozen inputs, sha256
 python -m value_at_risk.evaluation.ledger --summary  # the disclosure integers
 python scripts/refresh_paper_figures.py --check      # figures file vs result files
